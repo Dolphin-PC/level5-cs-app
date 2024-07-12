@@ -9,9 +9,12 @@ const GlobalStyle = createGlobalStyle`
         color: white;
         background-image: url(${backgroundStar});
         background-size: contain;
-
     }
 
+    a {
+        text-decoration: none;
+        color: white;
+    }
 
 `;
 
