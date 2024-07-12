@@ -11,7 +11,7 @@ const CsCardList = () => {
     console.log({ searchText });
   }, [searchText]);
   return (
-    <S.div.Row $gap={20} $wrap>
+    <S.div.Grid>
       <CsCard />
       <CsCard />
       <CsCard />
@@ -32,7 +32,7 @@ const CsCardList = () => {
       <CsCard />
       <CsCard />
       <CsCard />
-    </S.div.Row>
+    </S.div.Grid>
   );
 };
 
