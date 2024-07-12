@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface RowProps {
-  $gap?: string;
+  $gap?: number;
   $wrap?: boolean;
 }
 

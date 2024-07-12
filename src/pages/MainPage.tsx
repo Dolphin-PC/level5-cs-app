@@ -1,44 +1,23 @@
-import CsCard from "@/components/atoms/CsCard";
+import CsCardList from "@/components/organisms/CsCardList/CsCardList";
+import SearchForm from "@/components/organisms/SearchForm/SearchForm";
 import * as S from "@/styles/index.style";
 
 const MainPage = (): React.ReactNode => {
   return (
     <S.div.Container>
-      <S.layout.Header>Header content</S.layout.Header>
+      <S.layout.Header>
+        <h1>D.S.H</h1>
+      </S.layout.Header>
 
       <h1>Dev Study Hub</h1>
-      <S.button.Button>내 지식 공유하기</S.button.Button>
+      <SearchForm />
 
-      <S.input.SearchInput />
+      <S.div.Gap $height={30} $width={0} />
+      <S.button.Button $color="primary">내 지식 공유하기</S.button.Button>
 
-      <S.div.Row>
-        <S.button.Button>BUTTON</S.button.Button>
-        <S.button.Button>BUTTON</S.button.Button>
-        <S.button.Button>BUTTON</S.button.Button>
-      </S.div.Row>
+      <S.div.Gap $height={50} $width={0} />
 
-      <S.div.Row $gap="20" $wrap>
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-        <CsCard />
-      </S.div.Row>
+      <CsCardList />
 
       <footer>Footer content</footer>
     </S.div.Container>

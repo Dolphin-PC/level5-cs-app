@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.51.1",
+    "@types/lodash": "^4.17.6",
+    "axios": "^1.7.2",
     "json-server": "^0.17.4",
+    "lodash": "^4.17.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.1",
+    "recoil": "^0.7.7",
     "styled-components": "^6.1.11"
   },
   "devDependencies": {

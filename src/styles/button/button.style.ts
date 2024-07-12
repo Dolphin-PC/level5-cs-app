@@ -1,14 +1,27 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Button = styled.button`
-  background-color: #4caf50;
+interface Props {
+  $color?: "primary" | "secondary";
+}
+export const Button = styled.button<Props>`
   border: none;
-  color: white;
+  border-radius: 10px;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
   cursor: pointer;
+
+  ${({ $color = "primary" }) =>
+    $color === "primary" ? primaryStyle : secondaryStyle}
+`;
+
+const primaryStyle = css`
+  color: white;
+  background-color: ${({ theme }) => theme.colors.primary};
+`;
+
+const secondaryStyle = css`
+  color: white;
+  background-color: ${({ theme }) => theme.colors.secondary};
 `;
