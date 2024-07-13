@@ -1,9 +1,6 @@
 import api from "@/config/axios";
+import { ICsCard } from "@/types/card";
 
-interface CsCard {
-  id: string;
-  title: string;
-}
 
 interface SearchQuery {
   title?: string;
@@ -11,10 +8,16 @@ interface SearchQuery {
 
 export const getCsCardList = async ({
   title,
-}: SearchQuery): Promise<CsCard[]> => {
+}: SearchQuery): Promise<ICsCard[]> => {
   let url = `/cs-card`;
   if (title) url += `?title_like=${title}`;
-  const res = await api.get<CsCard[]>(url);
+  const res = await api.get<ICsCard[]>(url);
 
   return res.data;
 };
+
+export const addNewCsCard = async (data: ICsCard): Promise<ICsCard> => {
+  const res = await api.post<ICsCard>("/cs-card", data);
+
+  return res.data;
+}

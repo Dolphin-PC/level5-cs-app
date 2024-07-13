@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 interface Props {
   $color?: "primary" | "secondary";
+  $fullWidth?: boolean;
 }
 export const Button = styled.button<Props>`
   border: none;
@@ -11,6 +12,9 @@ export const Button = styled.button<Props>`
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
+  font-family: 'Do Hyeon', sans-serif;
+
+  ${({ $fullWidth }) => $fullWidth && "width: 100%;"}
 
   ${({ $color = "primary" }) =>
     $color === "primary" ? primaryStyle : secondaryStyle}

@@ -12,9 +12,9 @@ const MainPage = (): React.ReactNode => {
       <SearchForm />
 
       <S.div.Gap $height={30} $width={0} />
-      <S.button.Button $color="primary">
-        <Link to="/card">내 지식 공유하기</Link>
-      </S.button.Button>
+      <Link to="/card">
+        <S.button.Button $color="primary">내 지식 공유하기</S.button.Button>
+      </Link>
 
       <S.div.Gap $height={50} $width={0} />
 
