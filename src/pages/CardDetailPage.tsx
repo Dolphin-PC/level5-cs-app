@@ -12,11 +12,9 @@ const CardDetailPage = () => {
   return (
     <S.div.Container>
       <Header />
-      <S.div.Paper>
-        <Suspense fallback={<div>Loading...</div>}>
-          <CsCardDetail id={Number(id)} />
-        </Suspense>
-      </S.div.Paper>
+      <Suspense fallback={<div>Loading...</div>}>
+        <CsCardDetail id={Number(id)} />
+      </Suspense>
     </S.div.Container>
   );
 };
