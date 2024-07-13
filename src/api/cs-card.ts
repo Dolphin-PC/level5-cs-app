@@ -16,6 +16,14 @@ export const getCsCardList = async ({
   return res.data;
 };
 
+export const getCsCardById = async (id: number): Promise<ICsCard> => {
+  const res = await api.get<ICsCard>(`/cs-card/${id}`);
+  
+  // 3초의 지연을 추가하여 데이터 로딩을 시뮬레이션합니다.
+  await new Promise(resolve => setTimeout(resolve, 3000));
+  return res.data;
+}
+
 export const addNewCsCard = async (data: ICsCard): Promise<ICsCard> => {
   const res = await api.post<ICsCard>("/cs-card", data);
 

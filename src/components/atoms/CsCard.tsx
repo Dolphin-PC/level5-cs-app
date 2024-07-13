@@ -1,7 +1,8 @@
 import * as S from "@/styles/index.style";
+import { ICsCard } from "@/types/card";
 
-const CsCard = () => {
-  return <S.div.ArcadeCard>호이스팅이란</S.div.ArcadeCard>;
+const CsCard = (props: ICsCard) => {
+  return <S.div.ArcadeCard>{props.title}</S.div.ArcadeCard>;
 };
 
 export default CsCard;
