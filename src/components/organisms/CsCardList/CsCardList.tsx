@@ -2,9 +2,9 @@ import * as S from "@/styles/index.style";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { searchTextState } from "../SearchForm/atom";
-import CsCard from "@/components/atoms/CsCard";
 import { ICsCard } from "@/types/card";
 import { getCsCardList } from "@/api/cs-card";
+import CsCardButton from "@/components/atoms/CsCardButton";
 
 const CsCardList = () => {
   const searchText = useRecoilValue(searchTextState);
@@ -23,7 +23,7 @@ const CsCardList = () => {
   return (
     <S.div.Grid>
       {cards.map((card) => (
-        <CsCard key={card.id} {...card} />
+        <CsCardButton key={card.id} {...card} />
       ))}
     </S.div.Grid>
   );

@@ -20,6 +20,15 @@ export const Button = styled.button<Props>`
     $color === "primary" ? primaryStyle : secondaryStyle}
 `;
 
+export const IconButton = styled.button`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const primaryStyle = css`
   color: white;
   background-color: ${({ theme }) => theme.colors.primary};

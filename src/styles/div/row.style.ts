@@ -8,7 +8,6 @@ interface RowProps {
 export const Row = styled.div<RowProps>`
   display: flex;
   align-items: center;
-  padding: 0 20px;
 
   ${({ $gap }) => $gap && `gap: ${$gap}px;`}
   ${({ $wrap }) => $wrap && `flex-wrap: wrap;`}

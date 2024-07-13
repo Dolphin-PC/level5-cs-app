@@ -1,9 +1,12 @@
 import { addNewCsCard } from "@/api/cs-card";
 import * as S from "@/styles/index.style";
 import { ICsCard } from "@/types/card";
+import { encrypt } from "@/util/util";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const CardForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -11,8 +14,17 @@ const CardForm = () => {
   } = useForm<ICsCard>();
 
   const onAddNewCard: SubmitHandler<ICsCard> = async (data) => {
-    const res = await addNewCsCard(data);
-    console.log({ res });
+    try {
+      data.password = encrypt(data.password);
+      const res = await addNewCsCard(data);
+
+      alert("정상 등록되었습니다.");
+      navigate("/card/" + res.id);
+    } catch (error) {
+      console.error(error);
+      alert("오류가 발생했습니다.");
+      window.location.reload();
+    }
   };
 
   return (
@@ -29,9 +41,15 @@ const CardForm = () => {
       )}
       <S.div.Gap $height={20} $width={0} />
 
-      {/* <label htmlFor="tags">태그</label>
-    <S.input.Input type="text" id="tags" name="tags" />
-    <S.div.Gap $height={20} $width={0} /> */}
+      <label htmlFor="password">비밀번호</label>
+      <S.input.Input
+        type="password"
+        {...register("password", { required: true })}
+      />
+      {errors.password && (
+        <S.span.ErrorSpan>비밀번호를 입력해주세요</S.span.ErrorSpan>
+      )}
+      <S.div.Gap $height={20} $width={0} />
 
       <S.button.Button $fullWidth type="submit">
         제출

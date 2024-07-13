@@ -2,7 +2,10 @@ import { Suspense } from "react";
 import * as S from "@/styles/index.style";
 import Header from "@/components/atoms/Header";
 import { Navigate, useParams } from "react-router-dom";
-import CsCardDetail from "@/components/atoms/CsCardDetail";
+import CsCardPaper from "@/components/organisms/CsCardPaper";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallbackUI from "@/components/atoms/ErrorFallback";
+import LoadingFallbackUI from "@/components/atoms/LoadingFallbackUI/LoadingFallbackUI";
 
 const CardDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -12,9 +15,12 @@ const CardDetailPage = () => {
   return (
     <S.div.Container>
       <Header />
-      <Suspense fallback={<div>Loading...</div>}>
-        <CsCardDetail id={Number(id)} />
-      </Suspense>
+
+      <ErrorBoundary fallback={<ErrorFallbackUI />}>
+        <Suspense fallback={<LoadingFallbackUI />}>
+          <CsCardPaper id={Number(id)} />
+        </Suspense>
+      </ErrorBoundary>
     </S.div.Container>
   );
 };
