@@ -7,8 +7,9 @@ const CommentPaper = ({ csCardId }: { csCardId: number }) => {
   setCsCardId(csCardId);
 
   return (
-    <S.div.Paper>
-      <Comment.Form />
+    <S.div.Paper $width="50%">
+      <Comment.NewForm />
+      <S.div.Gap $height={50} $width={0} />
       <Comment.List />
     </S.div.Paper>
   );

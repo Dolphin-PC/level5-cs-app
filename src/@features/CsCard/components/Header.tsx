@@ -6,9 +6,7 @@ import { deleteCsCard } from "@/api/cs-cards";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const { csCard, toggleEditMode, confirmPassword } = useCsCard(
-    (state) => state
-  );
+  const { csCard, toggleEditMode, confirmPassword } = useCsCard();
   const navigate = useNavigate();
 
   if (csCard === null) return null;

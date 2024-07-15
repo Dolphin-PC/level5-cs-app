@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface Props {
-  $gap?: string;
+  $gap?: number;
   $wrap?: boolean;
 }
 

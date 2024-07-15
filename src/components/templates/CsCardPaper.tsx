@@ -22,7 +22,7 @@ const CsCardPaper = ({ id }: { id: number }) => {
   }, [card, setCsCard]);
 
   return (
-    <S.div.Paper>
+    <S.div.Paper $width="50%">
       <CsCard.Header />
       {isEditMode ? <CsCard.EditForm /> : <CardInfo card={card} />}
     </S.div.Paper>

@@ -1,29 +1,20 @@
-import { getCommentListById } from "@/api/comments";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { Fragment } from "react";
-import useComment from "../useComment";
+import * as S from "@/styles/index.style";
+import Comment from "./Comment";
+import useCommentQuery from "../useCommentQuery";
 
 const List = () => {
-  const csCardId = useComment((state) => state.csCardId);
-
-  const { data: comments } = useSuspenseQuery({
-    queryKey: ["comments", csCardId],
-    queryFn: ({ queryKey }) => getCommentListById(queryKey[1] as number),
-  });
+  const { comments } = useCommentQuery();
 
   return (
-    <Fragment>
+    <S.div.Column $gap={10}>
       {comments.length === 0 ? (
         <p>댓글이 없습니다.</p>
       ) : (
         comments?.map((comment) => (
-          <div key={comment.id}>
-            <h3>{comment.author}</h3>
-            <p>{comment.content}</p>
-          </div>
+          <Comment key={comment.id} comment={comment} />
         ))
       )}
-    </Fragment>
+    </S.div.Column>
   );
 };
 
