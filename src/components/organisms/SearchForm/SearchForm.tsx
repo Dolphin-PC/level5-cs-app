@@ -1,11 +1,10 @@
 import * as S from "@/styles/index.style";
 import _ from "lodash";
-import { useSetRecoilState } from "recoil";
-import { searchTextState } from "./atom";
 import { Fragment } from "react/jsx-runtime";
+import useSearchState from "@/store/slices/searchSlice";
 
 const SearchForm = () => {
-  const setSearchText = useSetRecoilState(searchTextState);
+  const setSearchText = useSearchState((state) => state.setSearchText);
 
   const handleSearch = _.debounce(
     async (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,13 +1,12 @@
 import * as S from "@/styles/index.style";
 import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { searchTextState } from "../SearchForm/atom";
 import { ICsCard } from "@/types/card";
 import { getCsCardList } from "@/api/cs-card";
 import CsCardButton from "@/components/atoms/CsCardButton";
+import useSearchState from "@/store/slices/searchSlice";
 
 const CsCardList = () => {
-  const searchText = useRecoilValue(searchTextState);
+  const searchText = useSearchState((state) => state.searchText);
   const [cards, setCards] = useState<ICsCard[]>([]);
 
   useEffect(() => {
