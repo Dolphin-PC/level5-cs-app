@@ -6,14 +6,20 @@ const BASE_URL = "/cs_cards";
 
 interface SearchQuery {
   title?: string;
+  _page?: number;
+  _limit?: number;
 }
 
 export const getCsCardList = async ({
   title,
+  _page = 1,
+  _limit = 6,
 }: SearchQuery): Promise<ICsCard[]> => {
-  let url = BASE_URL;
-  if (title) url += `?title_like=${title}`;
-  const res = await api.get<ICsCard[]>(url);
+  const queryParam = new URLSearchParams();
+  title && queryParam.append("title_like", title);
+  _page && queryParam.append("_page", _page.toString());
+  _limit && queryParam.append("_limit", _limit.toString());
+  const res = await api.get<ICsCard[]>(`${BASE_URL}?${queryParam.toString()}`);
 
   return res.data;
 };
@@ -21,8 +27,6 @@ export const getCsCardList = async ({
 export const getCsCardById = async (id: number): Promise<ICsCard> => {
   const res = await api.get<ICsCard>(`${BASE_URL}/${id}`);
 
-  // 3초의 지연을 추가하여 데이터 로딩을 시뮬레이션합니다.
-  await new Promise((resolve) => setTimeout(resolve, 3000));
   return res.data;
 };
 
