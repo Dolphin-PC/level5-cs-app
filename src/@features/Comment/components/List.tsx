@@ -1,9 +1,9 @@
 import { getCommentListById } from "@/api/comments";
-import useComment from "@/components/templates/CommentPaper/useComment";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Fragment } from "react";
+import useComment from "../useComment";
 
-const CommentList = () => {
+const List = () => {
   const csCardId = useComment((state) => state.csCardId);
 
   const { data: comments } = useSuspenseQuery({
@@ -27,4 +27,4 @@ const CommentList = () => {
   );
 };
 
-export default CommentList;
+export default List;

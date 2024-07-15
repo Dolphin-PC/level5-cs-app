@@ -1,7 +1,6 @@
 import * as S from "@/styles/index.style";
-import useComment from "./useComment";
-import CommentForm from "@/components/organisms/CommentForm/CommentForm";
-import CommentList from "@/components/organisms/CommentList/CommentList";
+import useComment from "@/@features/Comment/useComment";
+import Comment from "@/@features/Comment";
 
 const CommentPaper = ({ csCardId }: { csCardId: number }) => {
   const setCsCardId = useComment((state) => state.setCsCardId);
@@ -9,8 +8,8 @@ const CommentPaper = ({ csCardId }: { csCardId: number }) => {
 
   return (
     <S.div.Paper>
-      <CommentForm />
-      <CommentList />
+      <Comment.Form />
+      <Comment.List />
     </S.div.Paper>
   );
 };

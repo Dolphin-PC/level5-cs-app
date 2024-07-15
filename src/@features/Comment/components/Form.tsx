@@ -1,11 +1,11 @@
 import * as S from "@/styles/index.style";
 import { addComment } from "@/api/comments";
-import useComment from "@/components/templates/CommentPaper/useComment";
 import { IComment } from "@/types/comment";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { SubmitHandler, useForm } from "react-hook-form";
+import useComment from "../useComment";
 
-const CommentForm = () => {
+const Form = () => {
   const csCardId = useComment((state) => state.csCardId);
 
   const { register, handleSubmit } = useForm<IComment>({
@@ -49,4 +49,4 @@ const CommentForm = () => {
   );
 };
 
-export default CommentForm;
+export default Form;
