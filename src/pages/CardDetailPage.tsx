@@ -4,9 +4,9 @@ import { Navigate, useParams } from "react-router-dom";
 
 import * as S from "@/styles/index.style";
 import Header from "@/components/atoms/Header";
-import CsCardPaper from "@/components/organisms/CsCardPaper";
 import ErrorFallbackUI from "@/components/atoms/ErrorFallback";
 import LoadingFallbackUI from "@/components/atoms/LoadingFallbackUI/LoadingFallbackUI";
+import CsCardPaper from "@/components/organisms/CsCardPaper/CsCardPaper";
 
 const CardDetailPage = () => {
   const { id } = useParams<{ id: string }>();

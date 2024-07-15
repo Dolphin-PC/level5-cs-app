@@ -1,6 +1,6 @@
 import api from "@/config/axios";
 import { ICsCard } from "@/types/card";
-
+import { encrypt } from "@/util/util";
 
 interface SearchQuery {
   title?: string;
@@ -18,14 +18,26 @@ export const getCsCardList = async ({
 
 export const getCsCardById = async (id: number): Promise<ICsCard> => {
   const res = await api.get<ICsCard>(`/cs-cards/${id}`);
-  
+
   // 3초의 지연을 추가하여 데이터 로딩을 시뮬레이션합니다.
-  await new Promise(resolve => setTimeout(resolve, 3000));
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   return res.data;
-}
+};
 
 export const addNewCsCard = async (data: ICsCard): Promise<ICsCard> => {
+  data.password = encrypt(data.password);
   const res = await api.post<ICsCard>("/cs-cards", data);
 
   return res.data;
-}
+};
+
+export const updateCsCard = async (data: ICsCard): Promise<ICsCard> => {
+  data.password = encrypt(data.password);
+  const res = await api.put<ICsCard>(`/cs-cards/${data.id}`, data);
+
+  return res.data;
+};
+
+export const deleteCsCard = async (id: number): Promise<void> => {
+  await api.delete(`/cs-cards/${id}`);
+};

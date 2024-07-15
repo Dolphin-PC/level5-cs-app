@@ -4,14 +4,24 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 interface Props {
   onSubmit: SubmitHandler<ICsCard>;
+  card?: ICsCard;
 }
 
-const CardForm = ({ onSubmit }: Props) => {
+const CardForm = ({ card, onSubmit }: Props) => {
+  const isEditMode = !card;
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ICsCard>();
+  } = useForm<ICsCard>({
+    defaultValues: {
+      id: card?.id || 0,
+      title: card?.title || "",
+      content: card?.content || "",
+      password: "",
+    },
+  });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -38,7 +48,7 @@ const CardForm = ({ onSubmit }: Props) => {
       <S.div.Gap $height={20} $width={0} />
 
       <S.button.Button $fullWidth type="submit">
-        제출
+        {isEditMode ? "제출" : "수정"}
       </S.button.Button>
     </form>
   );

@@ -1,5 +1,5 @@
 import Header from "@/components/atoms/Header";
-import CardForm from "@/components/organisms/CardForm/CardForm";
+import NewCardForm from "@/components/organisms/NewCardForm";
 import * as S from "@/styles/index.style";
 
 const CardNewPage = () => {
@@ -9,7 +9,7 @@ const CardNewPage = () => {
 
       <main style={{ width: "50%" }}>
         <h1>CS카드 만들기</h1>
-        <CardForm />
+        <NewCardForm />
       </main>
     </S.div.Container>
   );
