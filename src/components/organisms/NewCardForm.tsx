@@ -1,8 +1,8 @@
-import { addNewCsCard } from "@/api/cs-card";
-import { ICsCard } from "@/types/card";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import CardForm from "../molecules/CardForm";
+import { ICsCard } from "@/types/csCard";
+import { addNewCsCard } from "@/api/cs-cards";
 
 const NewCardForm = () => {
   const navigate = useNavigate();

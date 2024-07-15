@@ -1,5 +1,5 @@
 {
-  "cs-cards": [
+  "cs_cards": [
     {
       "title": "sad",
       "content": "sad",
@@ -53,6 +53,20 @@
       "title": "123123",
       "content": "123",
       "password": "123"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "cs_card_id": 4,
+      "content": "sad",
+      "password": "sad"
+    },
+    {
+      "id": 2,
+      "cs_card_id": 4,
+      "content": "sad2",
+      "password": "sad2"
     }
   ]
 }

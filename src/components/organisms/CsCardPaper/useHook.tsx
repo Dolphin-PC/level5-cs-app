@@ -1,5 +1,5 @@
-import { deleteCsCard, getCsCardById, updateCsCard } from "@/api/cs-card";
-import { ICsCard } from "@/types/card";
+import { deleteCsCard, getCsCardById, updateCsCard } from "@/api/cs-cards";
+import { ICsCard } from "@/types/csCard";
 import { decrypt } from "@/util/util";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useState } from "react";

@@ -7,6 +7,7 @@ import Header from "@/components/atoms/Header";
 import ErrorFallbackUI from "@/components/atoms/ErrorFallback";
 import LoadingFallbackUI from "@/components/atoms/LoadingFallbackUI/LoadingFallbackUI";
 import CsCardPaper from "@/components/organisms/CsCardPaper/CsCardPaper";
+import CsCardCommentPaper from "@/components/organisms/CsCardCommentPaper";
 
 const CardDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -19,9 +20,15 @@ const CardDetailPage = () => {
 
       <ErrorBoundary fallback={<ErrorFallbackUI />}>
         <Suspense fallback={<LoadingFallbackUI />}>
+          <h2>게시글</h2>
           <CsCardPaper id={Number(id)} />
         </Suspense>
       </ErrorBoundary>
+
+      <Suspense fallback={<LoadingFallbackUI />}>
+        <h2>댓글</h2>
+        <CsCardCommentPaper id={Number(id)} />
+      </Suspense>
     </S.div.Container>
   );
 };
