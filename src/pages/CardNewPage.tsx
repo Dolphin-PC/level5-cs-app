@@ -1,5 +1,5 @@
 import Header from "@/components/atoms/Header";
-import NewCardForm from "@/components/organisms/NewCardForm/NewCardForm";
+import NewCardForm from "@/components/organisms/NewCardForm";
 import * as S from "@/styles/index.style";
 
 const CardNewPage = () => {

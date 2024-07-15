@@ -1,12 +1,14 @@
 import * as S from "@/styles/index.style";
 import { useEffect, useState } from "react";
 import CsCardButton from "@/components/atoms/CsCardButton";
-import useSearchState from "@/store/slices/searchSlice";
 import { ICsCard } from "@/types/csCard";
 import { getCsCardList } from "@/api/cs-cards";
 
-const CsCardList = () => {
-  const searchText = useSearchState((state) => state.searchText);
+interface Props {
+  searchText?: string;
+}
+
+const CsCardList = ({ searchText }: Props) => {
   const [cards, setCards] = useState<ICsCard[]>([]);
 
   useEffect(() => {

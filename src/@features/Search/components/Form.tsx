@@ -1,10 +1,10 @@
 import * as S from "@/styles/index.style";
 import _ from "lodash";
 import { Fragment } from "react/jsx-runtime";
-import useSearchState from "@/store/slices/searchSlice";
+import useSearch from "../useSearch";
 
-const SearchForm = () => {
-  const setSearchText = useSearchState((state) => state.setSearchText);
+const Form = () => {
+  const setSearchText = useSearch((state) => state.setSearchText);
 
   const handleSearch = _.debounce(
     async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,14 +21,8 @@ const SearchForm = () => {
         $width={50}
         onChange={handleSearch}
       />
-
-      {/* <S.div.Row $gap={10} style={{ margin: "10px" }}>
-        <S.button.Button>BUTTON</S.button.Button>
-        <S.button.Button>BUTTON</S.button.Button>
-        <S.button.Button>BUTTON</S.button.Button>
-      </S.div.Row> */}
     </Fragment>
   );
 };
 
-export default SearchForm;
+export default Form;
