@@ -27,7 +27,7 @@ const CardDetailPage = () => {
 
       <Suspense fallback={<LoadingFallbackUI />}>
         <h2>댓글</h2>
-        <CsCardCommentPaper id={Number(id)} />
+        <CsCardCommentPaper csCardId={Number(id)} />
       </Suspense>
     </S.div.Container>
   );

@@ -1,5 +1,5 @@
 import * as S from "@/styles/index.style";
-import { ICsCard } from "@/types/card";
+import { ICsCard } from "@/types/csCard";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface Props {

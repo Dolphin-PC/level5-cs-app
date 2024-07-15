@@ -1,4 +1,4 @@
-import { ICsCard } from "@/types/card";
+import { ICsCard } from "@/types/csCard";
 import { Fragment } from "react/jsx-runtime";
 
 interface Props {
