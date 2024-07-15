@@ -6,8 +6,8 @@ import * as S from "@/styles/index.style";
 import Header from "@/components/atoms/Header";
 import ErrorFallbackUI from "@/components/atoms/ErrorFallback";
 import LoadingFallbackUI from "@/components/atoms/LoadingFallbackUI/LoadingFallbackUI";
-import CsCardPaper from "@/components/organisms/CsCardPaper/CsCardPaper";
-import CsCardCommentPaper from "@/components/organisms/CsCardCommentPaper";
+import CsCardPaper from "@/components/templates/CsCardPaper/CsCardPaper";
+import CommentPaper from "@/components/templates/CommentPaper/CommentPaper";
 
 const CardDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -27,7 +27,7 @@ const CardDetailPage = () => {
 
       <Suspense fallback={<LoadingFallbackUI />}>
         <h2>댓글</h2>
-        <CsCardCommentPaper csCardId={Number(id)} />
+        <CommentPaper csCardId={Number(id)} />
       </Suspense>
     </S.div.Container>
   );

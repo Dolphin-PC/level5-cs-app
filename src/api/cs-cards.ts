@@ -28,7 +28,7 @@ export const getCsCardById = async (id: number): Promise<ICsCard> => {
 
 export const addNewCsCard = async (data: ICsCard): Promise<ICsCard> => {
   data.password = encrypt(data.password);
-  const res = await api.post<ICsCard>("${BASE_URL}", data);
+  const res = await api.post<ICsCard>(BASE_URL, data);
 
   return res.data;
 };
