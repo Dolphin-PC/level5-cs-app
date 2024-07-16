@@ -8,6 +8,6 @@ interface Props {
 export const Column = styled.div<Props>`
   display: flex;
   flex-direction: column;
-
-  ${({ $gap }) => $gap && `gap: ${$gap}px;`}
+  flex: 1;
+  ${({ $gap }) => $gap && `gap: ${$gap}px;`};
 `;

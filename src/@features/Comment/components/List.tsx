@@ -1,9 +1,16 @@
 import * as S from "@/styles/index.style";
 import Comment from "./Comment";
 import useCommentQuery from "../useCommentQuery";
+import { useEffect } from "react";
+import useComment from "../useComment";
 
 const List = () => {
   const { comments } = useCommentQuery();
+  const setCommentsCount = useComment((state) => state.setCommentsCount);
+
+  useEffect(() => {
+    setCommentsCount(comments.length);
+  }, [comments, setCommentsCount]);
 
   return (
     <S.div.Column $gap={10}>

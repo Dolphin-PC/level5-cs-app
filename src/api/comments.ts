@@ -8,9 +8,6 @@ export const getCommentListById = async (id: number): Promise<IComment[]> => {
   const url = `${BASE_URL}?cs_card_id=${id}`;
   const res = await api.get<IComment[]>(url);
 
-  // 3초 지연
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-
   return res.data;
 };
 

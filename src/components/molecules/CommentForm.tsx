@@ -14,6 +14,7 @@ const CommentForm = ({ csCardId, comment, onSubmit }: Props) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<IComment>({
     defaultValues: {
       id: comment?.id || 0,
@@ -27,9 +28,14 @@ const CommentForm = ({ csCardId, comment, onSubmit }: Props) => {
   const isEditMode = useRef(comment !== undefined);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit((res) => {
+        onSubmit(res);
+        reset();
+      })}
+    >
       <S.div.Column $gap={10}>
-        <S.div.Row $gap={10} style={{ alignItems: "start" }}>
+        <S.div.Row $gap={10} style={{}}>
           <S.div.Column>
             <S.input.Input
               type="text"
@@ -54,7 +60,7 @@ const CommentForm = ({ csCardId, comment, onSubmit }: Props) => {
             )}
           </S.div.Column>
         </S.div.Row>
-        <div>
+        <S.div.Column>
           <S.input.TextArea
             placeholder="댓글"
             {...register("content", { required: true })}
@@ -62,10 +68,8 @@ const CommentForm = ({ csCardId, comment, onSubmit }: Props) => {
           {errors.content && (
             <S.span.ErrorSpan>댓글내용을 입력해주세요.</S.span.ErrorSpan>
           )}
-        </div>
-        <S.button.Button $fullWidth>
-          {comment ? "수정" : "작성"}
-        </S.button.Button>
+        </S.div.Column>
+        <S.button.Button>댓글 {comment ? "수정" : "작성"}</S.button.Button>
       </S.div.Column>
     </form>
   );

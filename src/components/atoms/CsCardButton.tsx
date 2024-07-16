@@ -1,5 +1,5 @@
 import * as S from "@/styles/index.style";
-import { ICsCard } from "@/types/card";
+import { ICsCard } from "@/types/csCard";
 import { Link } from "react-router-dom";
 
 const CsCardButton = (props: ICsCard) => {
