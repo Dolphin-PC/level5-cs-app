@@ -1,6 +1,6 @@
 import * as S from "@/styles/index.style";
 import { IComment } from "@/types/comment";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface Props {
