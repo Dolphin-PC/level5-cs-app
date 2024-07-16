@@ -47,3 +47,19 @@ export const updateCsCard = async (data: ICsCard): Promise<ICsCard> => {
 export const deleteCsCard = async (id: number): Promise<void> => {
   await api.delete(`${BASE_URL}/${id}`);
 };
+
+export const getNextCsCardId = async (id: number): Promise<ICsCard[]> => {
+  id++;
+  const res = await api.get<ICsCard[]>(`${BASE_URL}?id_gte=${id}`);
+
+  return res.data;
+};
+
+export const getPrevCsCardId = async (id: number): Promise<ICsCard[]> => {
+  id -= 1;
+  const res = await api.get<ICsCard[]>(
+    `${BASE_URL}?id_lte=${id}&_sort=id&_order=desc`
+  );
+
+  return res.data;
+};

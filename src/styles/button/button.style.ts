@@ -4,15 +4,20 @@ interface Props {
   $color?: "primary" | "secondary";
   $fullWidth?: boolean;
 }
-export const Button = styled.button<Props>`
+
+const defaultButtonStyle = css`
   border: none;
   border-radius: 10px;
-  padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: "Do Hyeon", sans-serif;
+`;
+
+export const Button = styled.button<Props>`
+  ${defaultButtonStyle}
+  padding: 15px 32px;
 
   ${({ $fullWidth }) => $fullWidth && "width: 100%;"}
 
@@ -21,12 +26,22 @@ export const Button = styled.button<Props>`
 `;
 
 export const IconButton = styled.button`
-  border: none;
+  ${defaultButtonStyle}
   background-color: transparent;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const CircleButton = styled.button<Props>`
+  ${defaultButtonStyle}
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  font-size: large;
+
+  ${({ $color = "primary" }) =>
+    $color === "primary" ? primaryStyle : secondaryStyle};
 `;
 
 const primaryStyle = css`

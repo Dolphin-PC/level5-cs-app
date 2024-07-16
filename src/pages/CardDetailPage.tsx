@@ -9,6 +9,7 @@ import LoadingFallbackUI from "@/components/atoms/LoadingFallbackUI/LoadingFallb
 import CsCardPaper from "@/components/templates/CsCardPaper";
 import CommentPaper from "@/components/templates/CommentPaper";
 import RightPanel from "@/components/templates/RightPanel";
+import CsCardNavigation from "@/components/organisms/CsCardNavigation";
 
 const CardDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -47,6 +48,9 @@ const CardDetailPage = () => {
           </Suspense>
         }
       />
+      <Suspense fallback={<LoadingFallbackUI />}>
+        <CsCardNavigation csCardId={Number(id)} />
+      </Suspense>
     </S.div.Container>
   );
 };
