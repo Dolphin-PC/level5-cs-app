@@ -1,5 +1,5 @@
 import { ICsCard } from "@/types/csCard";
-import { decrypt, encrypt } from "@/util/util";
+import { decrypt } from "@/util/util";
 import { create } from "zustand";
 
 interface CsCard {
