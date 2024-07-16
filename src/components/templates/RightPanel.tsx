@@ -1,5 +1,5 @@
 import * as S from "@/styles/index.style";
-import { Fragment, ReactNode } from "react";
+import { ReactNode } from "react";
 
 interface Props {
   main: ReactNode;
@@ -7,9 +7,6 @@ interface Props {
 }
 
 const RightPanel = ({ main, right }: Props) => {
-  // const [isOpen, setIsOpen] = useState(false);
-  // const toggle = () => setIsOpen(!isOpen);
-
   return (
     <S.div.Row
       style={{
