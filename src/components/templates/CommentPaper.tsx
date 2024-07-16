@@ -1,14 +1,18 @@
 import * as S from "@/styles/index.style";
 import useComment from "@/@features/Comment/useComment";
 import Comment from "@/@features/Comment";
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 
 const CommentPaper = ({ csCardId }: { csCardId: number }) => {
   const setCsCardId = useComment((state) => state.setCsCardId);
 
   useLayoutEffect(() => {
     setCsCardId(csCardId);
-  }, [setCsCardId, csCardId]);
+  }, []);
+
+  useEffect(() => {
+    console.log("CommentPaper rendered");
+  });
 
   return (
     <S.div.Paper $width="50%">

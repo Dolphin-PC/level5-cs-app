@@ -1,42 +1,60 @@
 import * as S from "@/styles/index.style";
 import { IComment } from "@/types/comment";
 import useComment from "../useComment";
-import { Fragment } from "react";
-import EditForm from "./EditForm";
+import React, { Fragment, useState } from "react";
 import EditIcon from "@/assets/icons/edit.svg?react";
 import DeleteIcon from "@/assets/icons/delete.svg?react";
 import useCommentQuery from "../useCommentQuery";
+import CommentForm from "@/components/molecules/CommentForm";
+import { SubmitHandler } from "react-hook-form";
 
 interface Props {
   comment: IComment;
 }
 
 const Comment = ({ comment }: Props) => {
-  const [editComment, toggleEditComment, confirmPassword] = useComment(
-    (state) => [
-      state.editComment,
-      state.toggleEditComment,
-      state.confirmPassword,
-    ]
-  );
+  const [isEdit, setIsEdit] = useState(false);
+  const confirmPassword = useComment((state) => state.confirmPassword);
 
-  const { mutateDeleteComment } = useCommentQuery();
+  const { mutationDeleteComment, mutationUpateComment } = useCommentQuery();
 
-  const onDeleteCard = () =>
-    confirmPassword(comment) && mutateDeleteComment.mutate(comment.id);
+  const handleUpdateComment: SubmitHandler<IComment> = (data) => {
+    mutationUpateComment.mutate(data);
+    setIsEdit(false);
+  };
+  const handleDeleteComment = () => {
+    if (confirmPassword(comment)) {
+      mutationDeleteComment.mutate(comment.id);
+    }
+  };
+
+  const toggleEditComment = () => {
+    if (isEdit) {
+      setIsEdit(false);
+      return;
+    }
+    if (confirmPassword(comment)) {
+      setIsEdit(true);
+    }
+  };
 
   return (
     <S.div.Paper key={comment.id}>
       <S.div.Row style={{ justifyContent: "flex-end" }}>
-        <S.button.IconButton onClick={onDeleteCard}>
+        <S.button.IconButton onClick={handleDeleteComment}>
           <DeleteIcon />
         </S.button.IconButton>
-        <S.button.IconButton onClick={() => toggleEditComment(comment)}>
+        <S.button.IconButton onClick={toggleEditComment}>
           <EditIcon />
         </S.button.IconButton>
       </S.div.Row>
-      {comment === editComment ? (
-        <EditForm />
+
+      {isEdit ? (
+        <CommentForm
+          csCardId={comment.cs_card_id}
+          onSubmit={handleUpdateComment}
+          comment={comment}
+        />
       ) : (
         <Fragment>
           <h3>{comment.author}</h3>
@@ -47,4 +65,4 @@ const Comment = ({ comment }: Props) => {
   );
 };
 
-export default Comment;
+export default React.memo(Comment);

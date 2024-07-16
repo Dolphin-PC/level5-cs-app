@@ -1,32 +1,14 @@
-import {
-  addComment,
-  deleteComment,
-  getCommentListById,
-  updateComment,
-} from "@/api/comments";
-import {
-  useMutation,
-  useQueryClient,
-  useSuspenseQuery,
-} from "@tanstack/react-query";
+import { addComment, deleteComment, updateComment } from "@/api/comments";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useComment from "./useComment";
 import { IComment } from "@/types/comment";
 
 const useCommentQuery = () => {
-  const [csCardId, toggleEditComment] = useComment((state) => [
-    state.csCardId,
-    state.toggleEditComment,
-  ]);
+  const [csCardId] = useComment((state) => [state.csCardId]);
 
   const queryClient = useQueryClient();
 
-  const { data: comments } = useSuspenseQuery({
-    queryKey: ["comments", csCardId],
-    queryFn: ({ queryKey }) =>
-      queryKey[1] ? getCommentListById(queryKey[1] as number) : null,
-  });
-
-  const mutateAddComment = useMutation({
+  const mutationAddComment = useMutation({
     mutationFn: (data: IComment) => addComment(data),
     onSuccess: (res) => {
       alert("댓글이 추가되었습니다.");
@@ -37,7 +19,17 @@ const useCommentQuery = () => {
     },
   });
 
-  const mutateUpateComment = useMutation({
+  const mutationDeleteComment = useMutation({
+    mutationFn: (id: number) => deleteComment(id),
+    onSuccess: (deletedId) => {
+      // alert("댓글이 삭제되었습니다.");
+
+      queryClient.setQueryData(["comments", csCardId], (prev: IComment[]) =>
+        prev.filter((comment) => comment.id !== deletedId)
+      );
+    },
+  });
+  const mutationUpateComment = useMutation({
     mutationFn: (data: IComment) => updateComment(data),
     onSuccess: (res) => {
       alert("댓글이 수정되었습니다.");
@@ -46,25 +38,14 @@ const useCommentQuery = () => {
           comment.id === res.id ? { ...comment, ...res } : comment
         ),
       ]);
-      toggleEditComment(null);
-    },
-  });
-
-  const mutateDeleteComment = useMutation({
-    mutationFn: (id: number) => deleteComment(id),
-    onSuccess: (res) => {
-      alert("댓글이 삭제되었습니다.");
-      queryClient.setQueryData(["comments", csCardId], (prev: IComment[]) => [
-        ...prev.filter((comment) => comment.id !== res),
-      ]);
     },
   });
 
   return {
-    comments,
-    mutateAddComment,
-    mutateUpateComment,
-    mutateDeleteComment,
+    // comments,
+    mutationAddComment,
+    mutationUpateComment,
+    mutationDeleteComment,
   };
 };
 

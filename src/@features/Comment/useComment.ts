@@ -7,12 +7,9 @@ interface Comment {
   setCsCardId: (csCardId: number) => void;
 
   editComment: IComment | null;
-  toggleEditComment: (currentComment: IComment | null) => void;
+  toggleEditComment: (currentComment: IComment | null) => boolean;
 
   confirmPassword: (comment: IComment) => boolean;
-
-  commentsCount: number;
-  setCommentsCount: (commentsCount: number) => void;
 }
 
 const useComment = create<Comment>((set, get) => ({
@@ -23,19 +20,22 @@ const useComment = create<Comment>((set, get) => ({
   toggleEditComment: (comment: IComment | null) => {
     if (comment === null) {
       set({ editComment: null });
-      return;
+      return true;
     }
 
     const { editComment, confirmPassword } = get();
 
     if (editComment && editComment.id === comment.id) {
       set({ editComment: null });
-      return;
+      return true;
     }
 
     if (confirmPassword(comment)) {
       set({ editComment: comment });
+      return true;
     }
+
+    return false;
   },
   confirmPassword: (comment: IComment) => {
     const inputPassword = prompt("비밀번호를 입력해주세요");
@@ -45,9 +45,6 @@ const useComment = create<Comment>((set, get) => ({
     alert("비밀번호가 일치하지 않습니다.");
     return false;
   },
-
-  commentsCount: 0,
-  setCommentsCount: (commentsCount: number) => set({ commentsCount }),
 }));
 
 export default useComment;

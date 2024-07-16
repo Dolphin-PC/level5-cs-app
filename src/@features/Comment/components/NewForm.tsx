@@ -7,12 +7,13 @@ import useCommentQuery from "../useCommentQuery";
 const NewForm = () => {
   const csCardId = useComment((state) => state.csCardId);
 
-  const { mutateAddComment } = useCommentQuery();
-
+  const { mutationAddComment } = useCommentQuery();
   const onAddComment: SubmitHandler<IComment> = (data) =>
-    mutateAddComment.mutate(data);
+    mutationAddComment.mutate(data);
 
-  return <CommentForm csCardId={csCardId} onSubmit={onAddComment} />;
+  return (
+    csCardId && <CommentForm csCardId={csCardId} onSubmit={onAddComment} />
+  );
 };
 
 export default NewForm;

@@ -8,11 +8,9 @@ import ErrorFallbackUI from "@/components/atoms/ErrorFallback";
 import LoadingFallbackUI from "@/components/atoms/LoadingFallbackUI/LoadingFallbackUI";
 import CsCardPaper from "@/components/templates/CsCardPaper";
 import CommentPaper from "@/components/templates/CommentPaper";
-import useComment from "@/@features/Comment/useComment";
 
 const CardDetailPage = () => {
   const { id } = useParams<{ id: string }>();
-  const commentsCount = useComment((state) => state.commentsCount);
 
   if (!id || isNaN(Number(id))) return <Navigate to="/" />;
 
@@ -28,7 +26,7 @@ const CardDetailPage = () => {
       </ErrorBoundary>
 
       <Suspense fallback={<LoadingFallbackUI />}>
-        <h2>{commentsCount}개의 댓글</h2>
+        <h2>댓글</h2>
         <CommentPaper csCardId={Number(id)} />
       </Suspense>
     </S.div.Container>

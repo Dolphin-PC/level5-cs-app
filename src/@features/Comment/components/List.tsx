@@ -1,16 +1,16 @@
 import * as S from "@/styles/index.style";
 import Comment from "./Comment";
-import useCommentQuery from "../useCommentQuery";
-import { useEffect } from "react";
+import { getCommentListById } from "@/api/comments";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import useComment from "../useComment";
 
 const List = () => {
-  const { comments } = useCommentQuery();
-  const setCommentsCount = useComment((state) => state.setCommentsCount);
-
-  useEffect(() => {
-    comments && setCommentsCount(comments.length);
-  }, [comments, setCommentsCount]);
+  const csCardId = useComment((state) => state.csCardId);
+  const { data: comments } = useSuspenseQuery({
+    queryKey: ["comments", csCardId],
+    queryFn: ({ queryKey }) =>
+      queryKey[1] ? getCommentListById(queryKey[1] as number) : null,
+  });
 
   return (
     <S.div.Column $gap={10}>
