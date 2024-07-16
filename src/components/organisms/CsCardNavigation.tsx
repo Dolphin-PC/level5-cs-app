@@ -4,6 +4,7 @@ import { ICsCard } from "@/types/csCard";
 import { useSuspenseQueries } from "@tanstack/react-query";
 import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import _ from "lodash";
 
 interface Props {
   csCardId: ICsCard["id"];
@@ -43,7 +44,7 @@ const CsCardNavigation = ({ csCardId }: Props) => {
   }, [navigate, nextData, prevData]);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = _.debounce((e: KeyboardEvent) => {
       if (e.key === "ArrowRight") {
         handleNext();
       } else if (e.key === "ArrowLeft") {
@@ -51,7 +52,7 @@ const CsCardNavigation = ({ csCardId }: Props) => {
       } else if (e.key === "ArrowUp") {
         handleRandom();
       }
-    };
+    }, 300);
 
     window.addEventListener("keydown", handleKeyDown);
 
