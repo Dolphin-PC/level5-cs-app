@@ -9,12 +9,12 @@ const List = () => {
   const setCommentsCount = useComment((state) => state.setCommentsCount);
 
   useEffect(() => {
-    setCommentsCount(comments.length);
+    comments && setCommentsCount(comments.length);
   }, [comments, setCommentsCount]);
 
   return (
     <S.div.Column $gap={10}>
-      {comments.length === 0 ? (
+      {comments && comments.length === 0 ? (
         <p>댓글이 없습니다.</p>
       ) : (
         comments?.map((comment) => (

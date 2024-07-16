@@ -9,20 +9,6 @@
   ],
   "comments": [
     {
-      "id": 2,
-      "cs_card_id": 1,
-      "author": "qwe",
-      "content": "qwe",
-      "password": "U2FsdGVkX1/Pc3eHHob/OXK1g+O1uBRom51Rou81eKI="
-    },
-    {
-      "id": 3,
-      "cs_card_id": 1,
-      "author": "qwe",
-      "content": "qwe",
-      "password": "U2FsdGVkX1+XjeWRVnUCKz+91kQAxNeaTkB+ynlr5Dg="
-    },
-    {
       "id": 4,
       "cs_card_id": 1,
       "author": "qwe",
@@ -42,20 +28,6 @@
       "author": "ㅂㅈㄷ",
       "content": "ㅂㅈㄷ",
       "password": "U2FsdGVkX19ZHHnggXGdszjHSdpEPqwhwAu4w21WStY="
-    },
-    {
-      "id": 7,
-      "cs_card_id": 0,
-      "author": "qwe",
-      "content": "qwe",
-      "password": "U2FsdGVkX18wB5i6TVtzjHQQKvLAO1q0tIXot2yfppk="
-    },
-    {
-      "id": 8,
-      "cs_card_id": 0,
-      "author": "qwe",
-      "content": "qwe",
-      "password": "U2FsdGVkX1/x0YsBrpX4UOiDMqEkyEW/CBi7VATWnOc="
     }
   ]
 }

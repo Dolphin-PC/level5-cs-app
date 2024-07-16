@@ -3,7 +3,7 @@ import { decrypt } from "@/util/util";
 import { create } from "zustand";
 
 interface Comment {
-  csCardId: number;
+  csCardId: number | null;
   setCsCardId: (csCardId: number) => void;
 
   editComment: IComment | null;
@@ -16,7 +16,7 @@ interface Comment {
 }
 
 const useComment = create<Comment>((set, get) => ({
-  csCardId: 0,
+  csCardId: null,
   setCsCardId: (csCardId: number) => set({ csCardId }),
 
   editComment: null,

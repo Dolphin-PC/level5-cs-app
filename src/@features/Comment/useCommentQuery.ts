@@ -22,7 +22,8 @@ const useCommentQuery = () => {
 
   const { data: comments } = useSuspenseQuery({
     queryKey: ["comments", csCardId],
-    queryFn: ({ queryKey }) => getCommentListById(queryKey[1] as number),
+    queryFn: ({ queryKey }) =>
+      queryKey[1] ? getCommentListById(queryKey[1] as number) : null,
   });
 
   const mutateAddComment = useMutation({
