@@ -13,7 +13,7 @@ const CommentPaper = ({ csCardId }: { csCardId: number }) => {
   }, []);
 
   return (
-    <S.div.Paper $width="50%">
+    <S.div.Paper>
       <Comment.NewForm />
       <S.div.Gap $height={50} $width={0} />
       <Comment.List />
