@@ -20,7 +20,7 @@ const CardDetailPage = () => {
 
       <ErrorBoundary fallback={<ErrorFallbackUI />}>
         <Suspense fallback={<LoadingFallbackUI />}>
-          <h2>게시글</h2>
+          <h2>CS카드</h2>
           <CsCardPaper id={Number(id)} />
         </Suspense>
       </ErrorBoundary>
