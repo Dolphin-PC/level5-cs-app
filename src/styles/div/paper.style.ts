@@ -9,6 +9,6 @@ export const Paper = styled.main<Props>`
   color: black;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  ${({ $width = "70%" }) => $width && `width: ${$width};`}
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  ${({ $width = "90%" }) => $width && `width: ${$width};`}
 `;

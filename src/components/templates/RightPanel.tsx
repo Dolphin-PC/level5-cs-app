@@ -9,6 +9,7 @@ interface Props {
 const RightPanel = ({ main, right }: Props) => {
   return (
     <S.div.Row
+      $gap={80}
       style={{
         width: "80%",
         height: "100%",
@@ -16,12 +17,8 @@ const RightPanel = ({ main, right }: Props) => {
         justifyContent: "space-between",
       }}
     >
-      <div style={{ minWidth: "700px", width: "100%" }}>{main}</div>
-      <div
-        style={{ position: "fixed", right: 0, minWidth: "300px", width: "30%" }}
-      >
-        {right}
-      </div>
+      <div style={{ minWidth: "300px", width: "70%" }}>{main}</div>
+      <div style={{ minWidth: "300px", width: "30%" }}>{right}</div>
     </S.div.Row>
   );
 };

@@ -22,7 +22,7 @@ const useCommentMutation = () => {
   const mutationDeleteComment = useMutation({
     mutationFn: (id: number) => deleteComment(id),
     onSuccess: (deletedId) => {
-      // alert("댓글이 삭제되었습니다.");
+      alert("댓글이 삭제되었습니다.");
 
       queryClient.setQueryData(["comments", csCardId], (prev: IComment[]) =>
         prev.filter((comment) => comment.id !== deletedId)

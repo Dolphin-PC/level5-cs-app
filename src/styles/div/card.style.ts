@@ -32,7 +32,7 @@ export const ArcadeCard = styled(Card)`
     /* 아래쪽에 짙은 그림자를 주어 입체감을 생성 */ 0 8px #b71540,
     0 12px #ff6b81;
   transition: transform 0.1s ease, box-shadow 0.1s ease; /* 클릭 시 변화하는 효과를 부드럽게 */
-  max-height: 10vh;
+  height: 10vh;
   overflow: hidden;
 
   &:hover {

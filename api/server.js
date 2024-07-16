@@ -1,8 +1,13 @@
 import pkg from "json-server";
+import fs from "fs";
+import path from "path";
+
+const db = JSON.parse(fs.readFileSync(path.join("db.json")));
+
 const { create, router: _router, defaults, rewriter } = pkg;
 
 const server = create();
-const router = _router("db.json");
+const router = _router(db);
 const middlewares = defaults();
 
 server.use(middlewares);

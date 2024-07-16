@@ -13,7 +13,15 @@ const List = () => {
   });
 
   return (
-    <S.div.Column $gap={10} style={{ height: "500px", overflow: "scroll" }}>
+    <S.div.Column
+      $gap={10}
+      style={{
+        height: "500px",
+        overflow: "scroll",
+        scrollbarWidth: "none",
+        padding: "5px",
+      }}
+    >
       {comments && comments.length === 0 ? (
         <p>댓글이 없습니다.</p>
       ) : (
