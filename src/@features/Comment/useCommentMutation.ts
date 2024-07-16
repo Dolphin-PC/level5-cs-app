@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useComment from "./useComment";
 import { IComment } from "@/types/comment";
 
-const useCommentQuery = () => {
+const useCommentMutation = () => {
   const [csCardId] = useComment((state) => [state.csCardId]);
 
   const queryClient = useQueryClient();
@@ -49,4 +49,4 @@ const useCommentQuery = () => {
   };
 };
 
-export default useCommentQuery;
+export default useCommentMutation;

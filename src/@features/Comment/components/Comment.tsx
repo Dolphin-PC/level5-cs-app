@@ -4,7 +4,7 @@ import useComment from "../useComment";
 import React, { Fragment, useState } from "react";
 import EditIcon from "@/assets/icons/edit.svg?react";
 import DeleteIcon from "@/assets/icons/delete.svg?react";
-import useCommentQuery from "../useCommentQuery";
+import useCommentMutation from "../useCommentMutation";
 import CommentForm from "@/components/molecules/CommentForm";
 import { SubmitHandler } from "react-hook-form";
 
@@ -16,7 +16,7 @@ const Comment = ({ comment }: Props) => {
   const [isEdit, setIsEdit] = useState(false);
   const confirmPassword = useComment((state) => state.confirmPassword);
 
-  const { mutationDeleteComment, mutationUpateComment } = useCommentQuery();
+  const { mutationDeleteComment, mutationUpateComment } = useCommentMutation();
 
   const handleUpdateComment: SubmitHandler<IComment> = (data) => {
     mutationUpateComment.mutate(data);

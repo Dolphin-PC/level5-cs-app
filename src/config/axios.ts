@@ -7,7 +7,7 @@ const api = axios.create({
 api.interceptors.response.use(
   async (response) => {
     // 로딩 테스트용
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     return response;
   },
   (error) => {
