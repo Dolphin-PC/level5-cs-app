@@ -32,7 +32,7 @@ const CsCardList = ({ searchText }: Props) => {
   if (data.pages.flat().length == 0) return <h1>아무것도 없어요..</h1>;
 
   return (
-    <S.div.Grid>
+    <S.div.Grid style={{ width: "90%" }}>
       {data.pages.flat().map((card) => (
         <CsCardButton key={card.id} {...card} />
       ))}

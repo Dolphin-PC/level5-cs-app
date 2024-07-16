@@ -13,7 +13,7 @@ const SearchCard = () => {
       <Search.Form />
       <S.div.Gap $height={30} $width={0} />
       <Suspense fallback={<LoadingFallbackUI />}>
-        <CsCardList searchText={searchText} />;
+        <CsCardList searchText={searchText} />
       </Suspense>
     </Fragment>
   );
