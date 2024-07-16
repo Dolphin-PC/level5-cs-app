@@ -6,10 +6,10 @@ import * as S from "@/styles/index.style";
 import Header from "@/components/atoms/Header";
 import ErrorFallbackUI from "@/components/atoms/ErrorFallback";
 import LoadingFallbackUI from "@/components/atoms/LoadingFallbackUI/LoadingFallbackUI";
-import CsCardPaper from "@/components/templates/CsCardPaper";
-import CommentPaper from "@/components/templates/CommentPaper";
 import RightPanel from "@/components/templates/RightPanel";
 import CsCardNavigation from "@/components/organisms/CsCardNavigation";
+import CsCardPaper from "@/@features/CsCard/components/CsCardPaper";
+import CommentPaper from "@/@features/Comment/components/CommentPaper";
 
 const CardDetailPage = () => {
   const { id } = useParams<{ id: string }>();
