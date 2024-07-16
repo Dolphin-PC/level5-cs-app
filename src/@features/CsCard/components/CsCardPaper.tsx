@@ -4,8 +4,7 @@ import useCsCard from "@/@features/CsCard/useCsCard";
 import CsCard from "@/@features/CsCard";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { getCsCardById } from "@/api/cs-cards";
-import CardInfo from "@/components/molecules/CardInfo";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 
 const CsCardPaper = ({ id }: { id: number }) => {
   const { data: card } = useSuspenseQuery({
@@ -24,7 +23,15 @@ const CsCardPaper = ({ id }: { id: number }) => {
   return (
     <S.div.Paper>
       <CsCard.Header />
-      {isEditMode ? <CsCard.EditForm /> : <CardInfo card={card} />}
+      {isEditMode ? (
+        <CsCard.EditForm />
+      ) : (
+        <Fragment>
+          <h1>{card.title}</h1>
+          <hr />
+          <h3>{card.content}</h3>
+        </Fragment>
+      )}
     </S.div.Paper>
   );
 };

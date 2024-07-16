@@ -15,16 +15,15 @@ const MainPage = (): React.ReactNode => {
       <Header />
       <h1>Dev Study Hub</h1>
 
-      <Link to="/card">
-        <S.button.Button $color="primary">내 지식 공유하기</S.button.Button>
-      </Link>
-      <S.div.Gap $height={30} $width={0} />
-
-      <Search.Form />
-      <S.div.Gap $height={30} $width={0} />
-      <Suspense fallback={<LoadingFallbackUI />}>
-        <CsCardList searchText={searchText} />
-      </Suspense>
+      <S.div.Column $gap={30} style={{ width: "100%", alignItems: "center" }}>
+        <Link to="/card">
+          <S.button.Button $color="primary">내 지식 공유하기</S.button.Button>
+        </Link>
+        <Search.Form />
+        <Suspense fallback={<LoadingFallbackUI />}>
+          <CsCardList searchText={searchText} />
+        </Suspense>
+      </S.div.Column>
     </S.div.Container>
   );
 };

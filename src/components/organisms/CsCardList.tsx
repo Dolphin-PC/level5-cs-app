@@ -4,6 +4,7 @@ import { getCsCardList } from "@/api/cs-cards";
 import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import LoadingFallbackUI from "../atoms/LoadingFallbackUI/LoadingFallbackUI";
 import useScroll from "@/hooks/useScroll";
+import { Fragment } from "react/jsx-runtime";
 
 interface Props {
   searchText?: string;
@@ -32,12 +33,15 @@ const CsCardList = ({ searchText }: Props) => {
   if (data.pages.flat().length == 0) return <h1>아무것도 없어요..</h1>;
 
   return (
-    <S.div.Grid style={{ width: "90%" }}>
-      {data.pages.flat().map((card) => (
-        <CsCardButton key={card.id} {...card} />
-      ))}
+    <Fragment>
+      <S.div.Grid style={{ width: "90%" }}>
+        {data.pages.flat().map((card) => (
+          <CsCardButton key={card.id} {...card} />
+        ))}
+      </S.div.Grid>
       {isLoading && <LoadingFallbackUI />}
-    </S.div.Grid>
+      <S.div.Gap $height={30} $width={0} />
+    </Fragment>
   );
 };
 

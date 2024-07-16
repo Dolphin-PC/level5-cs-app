@@ -4,6 +4,7 @@ import { Fragment } from "react/jsx-runtime";
 import useSearch from "../useSearch";
 
 const Form = () => {
+  const searchText = useSearch((state) => state.searchText);
   const setSearchText = useSearch((state) => state.setSearchText);
 
   const handleSearch = _.debounce(
@@ -17,6 +18,7 @@ const Form = () => {
   return (
     <Fragment>
       <S.input.SearchInput
+        defaultValue={searchText}
         placeholder="궁금한 것을 검색해보세요."
         $width={50}
         onChange={handleSearch}

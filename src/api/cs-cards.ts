@@ -48,18 +48,28 @@ export const deleteCsCard = async (id: number): Promise<void> => {
   await api.delete(`${BASE_URL}/${id}`);
 };
 
-export const getNextCsCardId = async (id: number): Promise<ICsCard[]> => {
+export const getNextCsCardId = async (
+  id: number,
+  search?: string
+): Promise<ICsCard[]> => {
   id++;
-  const res = await api.get<ICsCard[]>(`${BASE_URL}?id_gte=${id}`);
+
+  let url = `${BASE_URL}?id_gte=${id}`;
+  if (search) url += `&title_like=${search}`;
+  const res = await api.get<ICsCard[]>(url);
 
   return res.data;
 };
 
-export const getPrevCsCardId = async (id: number): Promise<ICsCard[]> => {
+export const getPrevCsCardId = async (
+  id: number,
+  search?: string
+): Promise<ICsCard[]> => {
   id -= 1;
-  const res = await api.get<ICsCard[]>(
-    `${BASE_URL}?id_lte=${id}&_sort=id&_order=desc`
-  );
+
+  let url = `${BASE_URL}?id_lte=${id}&_sort=id&_order=desc`;
+  if (search) url += `&title_like=${search}`;
+  const res = await api.get<ICsCard[]>(url);
 
   return res.data;
 };
