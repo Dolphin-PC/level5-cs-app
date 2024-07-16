@@ -2,7 +2,6 @@ import useSearch from "@/@features/Search/useSearch";
 import { getNextCsCardId, getPrevCsCardId } from "@/api/cs-cards";
 import * as S from "@/styles/index.style";
 import { ICsCard } from "@/types/csCard";
-import { decrypt } from "@/util/util";
 import { useSuspenseQueries } from "@tanstack/react-query";
 import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,8 +13,6 @@ interface Props {
 const CsCardNavigation = ({ csCardId }: Props) => {
   const searchText = useSearch((state) => state.searchText);
   const navigate = useNavigate();
-
-  console.log(decrypt("U2FsdGVkX1997GRXDnKloyJBmH1wTlyXVcamYoNxV40="));
 
   const [{ data: nextData }, { data: prevData }] = useSuspenseQueries({
     queries: [
