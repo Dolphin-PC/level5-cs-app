@@ -1,6 +1,6 @@
 import api from "@/config/axios";
-import { ICsCard } from "@/types/csCard";
 import { encrypt } from "@/util/util";
+import { ICsCard } from "./type";
 
 const BASE_URL = "/cs_cards";
 

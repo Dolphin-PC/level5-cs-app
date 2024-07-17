@@ -1,6 +1,7 @@
-import * as S from "@/styles/index.style";
-import { ICsCard } from "@/types/csCard";
 import { SubmitHandler, useForm } from "react-hook-form";
+
+import { ICsCard } from "@/@features/CsCard/type";
+import * as S from "@/styles/index.style";
 
 interface Props {
   onSubmit: SubmitHandler<ICsCard>;

@@ -1,7 +1,8 @@
-import { addComment, deleteComment, updateComment } from "@/api/comments";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import useComment from "./useComment";
-import { IComment } from "@/types/comment";
+import { addComment, deleteComment, updateComment } from "./api";
+import { IComment } from "./type";
 
 const useCommentMutation = () => {
   const [csCardId] = useComment((state) => [state.csCardId]);

@@ -1,8 +1,9 @@
-import { IComment } from "@/types/comment";
 import { SubmitHandler } from "react-hook-form";
+
 import useComment from "../useComment";
-import CommentForm from "@/components/molecules/CommentForm";
 import useCommentMutation from "../useCommentMutation";
+import { IComment } from "../type";
+import CommentForm from "@/components/molecules/CommentForm";
 
 const NewForm = () => {
   const csCardId = useComment((state) => state.csCardId);

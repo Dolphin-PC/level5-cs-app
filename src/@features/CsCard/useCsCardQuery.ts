@@ -1,6 +1,7 @@
-import { updateCsCard } from "@/api/cs-cards";
-import { ICsCard } from "@/types/csCard";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { updateCsCard } from "./api";
+import { ICsCard } from "./type";
 
 const useCsCardQuery = () => {
   const queryClient = useQueryClient();

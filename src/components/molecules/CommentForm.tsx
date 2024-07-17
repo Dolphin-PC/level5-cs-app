@@ -1,7 +1,8 @@
-import * as S from "@/styles/index.style";
-import { IComment } from "@/types/comment";
 import { useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+
+import * as S from "@/styles/index.style";
+import { IComment } from "@/@features/Comment/type";
 
 interface Props {
   csCardId: number;

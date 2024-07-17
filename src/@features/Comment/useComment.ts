@@ -1,6 +1,7 @@
-import { IComment } from "@/types/comment";
-import { decrypt } from "@/util/util";
 import { create } from "zustand";
+
+import { decrypt } from "@/util/util";
+import { IComment } from "./type";
 
 interface Comment {
   csCardId: number | null;

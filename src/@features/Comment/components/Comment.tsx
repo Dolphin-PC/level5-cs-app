@@ -1,12 +1,13 @@
-import * as S from "@/styles/index.style";
-import { IComment } from "@/types/comment";
-import useComment from "../useComment";
+import { SubmitHandler } from "react-hook-form";
 import React, { Fragment, useState } from "react";
+
+import * as S from "@/styles/index.style";
 import EditIcon from "@/assets/icons/edit.svg?react";
 import DeleteIcon from "@/assets/icons/delete.svg?react";
+import useComment from "../useComment";
 import useCommentMutation from "../useCommentMutation";
+import { IComment } from "../type";
 import CommentForm from "@/components/molecules/CommentForm";
-import { SubmitHandler } from "react-hook-form";
 
 interface Props {
   comment: IComment;

@@ -1,8 +1,9 @@
-import * as S from "@/styles/index.style";
-import Comment from "./Comment";
-import { getCommentListById } from "@/api/comments";
 import { useSuspenseQuery } from "@tanstack/react-query";
+
+import * as S from "@/styles/index.style";
+import { getCommentListById } from "../api";
 import useComment from "../useComment";
+import Comment from "./Comment";
 
 const List = () => {
   const csCardId = useComment((state) => state.csCardId);

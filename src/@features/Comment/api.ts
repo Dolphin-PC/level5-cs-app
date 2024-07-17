@@ -1,6 +1,6 @@
 import api from "@/config/axios";
-import { IComment } from "@/types/comment";
 import { encrypt } from "@/util/util";
+import { IComment } from "./type";
 
 const BASE_URL = "/comments";
 

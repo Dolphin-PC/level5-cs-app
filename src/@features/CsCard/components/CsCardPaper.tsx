@@ -1,10 +1,10 @@
-import * as S from "@/styles/index.style";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { Fragment, useEffect } from "react";
 
+import * as S from "@/styles/index.style";
 import useCsCard from "@/@features/CsCard/useCsCard";
 import CsCard from "@/@features/CsCard";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { getCsCardById } from "@/api/cs-cards";
-import { Fragment, useEffect } from "react";
+import { getCsCardById } from "../api";
 
 const CsCardPaper = ({ id }: { id: number }) => {
   const { data: card } = useSuspenseQuery({

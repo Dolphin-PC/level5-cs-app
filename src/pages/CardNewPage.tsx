@@ -1,9 +1,10 @@
-import { addNewCsCard } from "@/api/cs-cards";
-import CardForm from "@/components/molecules/CardForm";
-import * as S from "@/styles/index.style";
-import { ICsCard } from "@/types/csCard";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+
+import * as S from "@/styles/index.style";
+import { addNewCsCard } from "@/@features/CsCard/api";
+import { ICsCard } from "@/@features/CsCard/type";
+import CardForm from "@/components/molecules/CardForm";
 
 const CardNewPage = () => {
   const navigate = useNavigate();

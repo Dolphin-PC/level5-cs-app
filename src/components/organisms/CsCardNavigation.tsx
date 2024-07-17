@@ -1,10 +1,11 @@
-import useSearch from "@/@features/Search/useSearch";
-import { getNextCsCardId, getPrevCsCardId } from "@/api/cs-cards";
-import * as S from "@/styles/index.style";
-import { ICsCard } from "@/types/csCard";
-import { useSuspenseQueries } from "@tanstack/react-query";
 import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSuspenseQueries } from "@tanstack/react-query";
+
+import * as S from "@/styles/index.style";
+import { getNextCsCardId, getPrevCsCardId } from "@/@features/CsCard/api";
+import { ICsCard } from "@/@features/CsCard/type";
+import useSearch from "@/@features/Search/useSearch";
 
 interface Props {
   csCardId: ICsCard["id"];

@@ -1,10 +1,12 @@
-import * as S from "@/styles/index.style";
-import CsCardButton from "@/components/atoms/CsCardButton";
-import { getCsCardList } from "@/api/cs-cards";
-import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
-import LoadingFallbackUI from "../atoms/LoadingFallbackUI/LoadingFallbackUI";
-import useScroll from "@/hooks/useScroll";
 import { Fragment } from "react/jsx-runtime";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
+
+import * as S from "@/styles/index.style";
+import useScroll from "@/hooks/useScroll";
+
+import { getCsCardList } from "@/@features/CsCard/api";
+import CsCardButton from "@/components/atoms/CsCardButton";
+import LoadingFallbackUI from "@/components/atoms/LoadingFallbackUI/LoadingFallbackUI";
 
 interface Props {
   searchText?: string;
