@@ -3,6 +3,7 @@ import styled from "styled-components";
 interface Props {
   $gap?: number;
   $wrap?: boolean;
+  $center?: boolean;
 }
 
 export const Container = styled.div<Props>`
@@ -14,4 +15,6 @@ export const Container = styled.div<Props>`
 
   ${({ $gap }) => $gap && `gap: ${$gap}px;`};
   ${({ $wrap }) => $wrap && `flex-wrap: wrap;`};
+  ${({ $center }) =>
+    $center && `justify-content: center; align-items: center;`};
 `;

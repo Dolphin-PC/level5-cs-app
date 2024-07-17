@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 interface Props {
   $color?: "primary" | "secondary";
   $fullWidth?: boolean;
+  $size?: "small" | "medium" | "large";
 }
 
 const defaultButtonStyle = css`
@@ -23,6 +24,23 @@ export const Button = styled.button<Props>`
 
   ${({ $color = "primary" }) =>
     $color === "primary" ? primaryStyle : secondaryStyle}
+
+  ${({ $size = "medium" }) => {
+    switch ($size) {
+      case "small":
+        return css`
+          font-size: small;
+        `;
+      case "medium":
+        return css`
+          font-size: medium;
+        `;
+      case "large":
+        return css`
+          font-size: large;
+        `;
+    }
+  }}
 `;
 
 export const IconButton = styled.button`

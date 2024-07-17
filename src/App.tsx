@@ -4,6 +4,8 @@ import CardNewPage from "./pages/CardNewPage";
 import CardDetailPage from "./pages/CardDetailPage";
 import GlobalStyle from "./styles/globalStyle.style";
 import Provider from "./config/Provider";
+import NotFoundPage from "./pages/NotFoundPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/card" element={<CardNewPage />} />
           <Route path="/card/:id" element={<CardDetailPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Provider>
     </BrowserRouter>

@@ -43,7 +43,7 @@ const useScroll = ({
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [hasNextPage, fetchNextPage, marginBottom]);
 };
 
 export default useScroll;
