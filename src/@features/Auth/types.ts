@@ -26,11 +26,12 @@ export type ExpiresIn = "10s" | "10m" | "1h" | "1d";
 export interface UserRes {
   id: string;
   nickname: string;
-  avatar: unknown;
+  avatar: string;
   success: boolean;
 }
 
 export interface ProfileReq {
+  accessToken: string;
   avatar: File;
   nickname: string;
 }

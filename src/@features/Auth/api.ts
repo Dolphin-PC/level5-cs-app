@@ -27,10 +27,10 @@ export const login = async (
 };
 
 /** GET::사용자 정보확인 */
-export const user = async (): Promise<UserRes> => {
+export const user = async (accessToken: string): Promise<UserRes> => {
   const res = await authApi.get("/user", {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   });
   return res.data;
@@ -38,6 +38,7 @@ export const user = async (): Promise<UserRes> => {
 
 /** PATCH::프로필 변경 */
 export const profile = async ({
+  accessToken,
   avatar,
   nickname,
 }: ProfileReq): Promise<UserRes> => {
@@ -45,9 +46,9 @@ export const profile = async ({
   formData.append("avatar", avatar);
   formData.append("nickname", nickname);
 
-  const res = await authApi.post("/profile", formData, {
+  const res = await authApi.patch("/profile", formData, {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   });
   return res.data;

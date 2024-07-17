@@ -21,9 +21,16 @@ const Header = () => {
       <Link to="/">
         <h1>D.S.H</h1>
       </Link>
-      <S.button.Button onClick={toggleAuth}>
-        {accessToken ? "로그아웃" : "로그인"}
-      </S.button.Button>
+      <S.div.Row $gap={20}>
+        {accessToken && (
+          <Link to="/my">
+            <S.button.Button $color="secondary">MY PAGE</S.button.Button>
+          </Link>
+        )}
+        <S.button.Button onClick={toggleAuth}>
+          {accessToken ? "로그아웃" : "로그인"}
+        </S.button.Button>
+      </S.div.Row>
     </S.layout.Header>
   );
 };
