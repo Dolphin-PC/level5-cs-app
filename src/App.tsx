@@ -10,6 +10,7 @@ import CardDetailPage from "./pages/CardDetailPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import PrivateRoute from "./components/templates/PrivateRoute";
 
 function App() {
   return (
@@ -21,8 +22,10 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/card" element={<CardNewPage />} />
           <Route path="/card/:id" element={<CardDetailPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route element={<PrivateRoute isAuth={false} />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Provider>

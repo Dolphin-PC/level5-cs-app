@@ -12,20 +12,26 @@ interface Auth {
 }
 
 interface Action {
-  setLogin: (data: Auth) => void;
+  handleLogin: (data: Auth) => void;
+  handleLogout: () => void;
 }
+
+const initialState: Auth = {
+  accessToken: null,
+  userId: null,
+  avatar: null,
+  nickname: null,
+  success: false,
+  expiredAt: 0,
+};
 
 const useAuth = create(
   persist<Auth & Action>(
     (set) => ({
-      accessToken: null,
-      userId: null,
-      avatar: null,
-      nickname: null,
-      success: false,
-      expiredAt: 0,
+      ...initialState,
 
-      setLogin: (data) => set(data),
+      handleLogin: (data) => set(data),
+      handleLogout: () => set(initialState),
     }),
     {
       name: "auth",

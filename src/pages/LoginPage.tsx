@@ -7,7 +7,7 @@ import { IAuth } from "@/@features/Auth/types";
 import { login } from "@/@features/Auth/api";
 
 const LoginPage = () => {
-  const setLogin = useAuth((state) => state.setLogin);
+  const setLogin = useAuth((state) => state.handleLogin);
 
   const handleLogin = async (data: IAuth) => {
     const res = await login(data, "1h");
