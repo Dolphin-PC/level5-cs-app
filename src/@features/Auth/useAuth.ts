@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { IAuth } from "./types";
+import dayjs, { Dayjs } from "dayjs";
 
 interface Auth {
   accessToken: string | null;
@@ -8,12 +9,14 @@ interface Auth {
   avatar: unknown | null;
   success: boolean;
   nickname: string | null;
-  expiredAt?: number;
+  expiredAt: Dayjs | null;
 }
 
 interface Action {
   handleLogin: (data: Auth) => void;
   handleLogout: () => void;
+  isExpired: () => boolean;
+  isValidate: () => boolean;
 }
 
 const initialState: Auth = {
@@ -22,16 +25,24 @@ const initialState: Auth = {
   avatar: null,
   nickname: null,
   success: false,
-  expiredAt: 0,
+  expiredAt: null,
 };
 
 const useAuth = create(
   persist<Auth & Action>(
-    (set) => ({
+    (set, get) => ({
       ...initialState,
 
       handleLogin: (data) => set(data),
       handleLogout: () => set(initialState),
+      isExpired: () => {
+        const now = dayjs();
+        return now.isAfter(dayjs());
+      },
+      isValidate: () => {
+        const { accessToken, isExpired } = get();
+        return !!(accessToken && !isExpired());
+      },
     }),
     {
       name: "auth",
@@ -39,15 +50,5 @@ const useAuth = create(
     }
   )
 );
-
-// const useAuth = create<Auth & Action>((set) => ({
-//   accessToken: null,
-//   userId: null,
-//   avatar: null,
-//   nickname: null,
-//   action: {
-//     login: (data) => set(data),
-//   },
-// }));
 
 export default useAuth;

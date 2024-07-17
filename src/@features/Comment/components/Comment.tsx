@@ -52,7 +52,7 @@ const Comment = ({ comment }: Props) => {
 
       {isEdit ? (
         <CommentForm
-          csCardId={comment.cs_card_id}
+          csCardId={comment.csCardId}
           onSubmit={handleUpdateComment}
           comment={comment}
         />

@@ -1,6 +1,8 @@
 import { authApi } from "../../config/axios";
 import {
+  ExpiresIn,
   LoginReq,
+  LoginRes,
   ProfileReq,
   RegisterReq,
   RegisterRes,
@@ -12,16 +14,6 @@ export const register = async (req: RegisterReq): Promise<RegisterRes> => {
   const res = await authApi.post("/register", req);
   return res.data;
 };
-
-export interface LoginRes {
-  accessToken: string;
-  userId: string;
-  success: boolean;
-  avatar: string;
-  nickname: string;
-}
-
-type ExpiresIn = "10s" | "10m" | "1h" | "1d";
 
 /** POST::로그인 */
 export const login = async (

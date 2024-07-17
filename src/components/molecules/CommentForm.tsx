@@ -19,7 +19,7 @@ const CommentForm = ({ csCardId, comment, onSubmit }: Props) => {
   } = useForm<IComment>({
     defaultValues: {
       id: comment?.id || 0,
-      cs_card_id: csCardId,
+      csCardId,
       author: comment?.author || "",
       content: comment?.content || "",
       password: "",

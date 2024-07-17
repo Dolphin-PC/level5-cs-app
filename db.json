@@ -120,7 +120,6 @@
       "content": "Perl은 다목적 스크립트 언어로, 텍스트 처리와 시스템 관리에 주로 사용됩니다. Perl은 강력한 정규 표현식을 지원하여 텍스트 처리를 효율적으로 수행할 수 있으며, 다양한 모듈과 CPAN을 통해 확장성을 제공합니다. Perl은 웹 개발, 시스템 관리, 데이터 분석 등 다양한 분야에서 활용됩니다.",
       "password": "U2FsdGVkX1997GRXDnKloyJBmH1wTlyXVcamYoNxV40="
     },
-
     {
       "id": 21,
       "title": "HTML5",
@@ -182,5 +181,13 @@
       "password": "U2FsdGVkX1997GRXDnKloyJBmH1wTlyXVcamYoNxV40="
     }
   ],
-  "comments": []
+  "comments": [
+    {
+      "id": 1,
+      "csCardId": 27,
+      "author": "qwe",
+      "content": "qwe",
+      "password": "U2FsdGVkX1+oRPbnPZqfNDqDWPiGc/RYakoHF0wVIok="
+    }
+  ]
 }

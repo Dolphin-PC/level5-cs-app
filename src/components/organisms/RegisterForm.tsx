@@ -1,38 +1,24 @@
 import * as S from "@/styles/index.style";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema, RegisterSchema } from "@/@features/Auth/yup";
 import { RegisterReq } from "@/@features/Auth/types";
-import { register as registerApi } from "@/@features/Auth/api";
 
-const RegisterForm = () => {
-  const navigate = useNavigate();
+interface Props {
+  onSubmit: (data: RegisterReq) => void;
+}
 
+const RegisterForm = ({ onSubmit }: Props) => {
   const {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
   } = useForm<RegisterSchema>({
     resolver: yupResolver(registerSchema),
   });
 
-  const handleRegister = async (data: RegisterReq) => {
-    const res = await registerApi(data);
-
-    const { success, message } = res;
-
-    alert(message);
-    if (!success) {
-      reset();
-    } else {
-      navigate("/login");
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit(handleRegister)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <S.div.Column $gap={30}>
         <div>
           <label htmlFor="id">아이디</label>
