@@ -9,7 +9,6 @@ import useAuth from "@/@features/Auth/useAuth";
 
 const Header = () => {
   const userId = useAuth((state) => state.userId);
-  const nickname = useAuth((state) => state.nickname);
   const { csCard, confirmPassword, setIsEditMode, isEditMode } = useCsCard();
   const navigate = useNavigate();
 
@@ -47,7 +46,7 @@ const Header = () => {
   return (
     <S.div.Row style={{ justifyContent: "space-between" }}>
       <p>
-        작성자 : {isOwner && nickname} {isAnonymousOwner && "익명"}
+        작성자 : {isAnonymousOwner ? "익명" : csCard.nickname ?? csCard.userId}
       </p>
       {isOwner || isAnonymousOwner ? (
         <S.div.Row>

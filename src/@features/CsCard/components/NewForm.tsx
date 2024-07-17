@@ -7,8 +7,12 @@ import { addNewCsCard } from "../api";
 import { AuthCsCardReq, CsCardReq } from "../type";
 
 const NewForm = () => {
-  const isAuth = useAuth((state) => state.isAuth);
-  const userId = useAuth((state) => state.userId);
+  const [isAuth, userId, nickname] = useAuth((state) => [
+    state.isAuth,
+    state.userId,
+    state.nickname,
+  ]);
+
   const navigate = useNavigate();
 
   const onSuccess = (id: number) => {
@@ -19,7 +23,11 @@ const NewForm = () => {
   const onAddNewCardAuth = async (data: AuthCardFormSchema): Promise<void> => {
     if (!userId) return;
 
-    const res = await addNewCsCard<AuthCsCardReq>({ ...data, userId });
+    const res = await addNewCsCard<AuthCsCardReq>({
+      ...data,
+      userId,
+      nickname: nickname || userId,
+    });
     onSuccess(res.id);
   };
 

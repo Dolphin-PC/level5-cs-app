@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { IAuth } from "./types";
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "@/config/dayjsConfig";
 
 interface Auth {
   accessToken: string | null;
@@ -9,11 +9,11 @@ interface Auth {
   avatar: unknown | null;
   success: boolean;
   nickname: string | null;
-  expiredAt: Dayjs | null;
+  expiredAt: string | null;
 }
 
 interface Action {
-  handleLogin: (data: Auth) => void;
+  setLoginInfo: (data: Auth) => void;
   handleLogout: () => void;
   isExpired: () => boolean;
   isAuth: () => boolean;
@@ -33,16 +33,27 @@ const useAuth = create(
     (set, get) => ({
       ...initialState,
 
-      handleLogin: (data) => set(data),
+      setLoginInfo: (data) => set(data),
       handleLogout: () => set(initialState),
       isExpired: () => {
+        const { expiredAt } = get();
+
         const now = dayjs();
-        return now.isAfter(dayjs());
+        return now.isAfter(expiredAt);
       },
       isAuth: () => {
         // TODO expired시, 로그아웃 처리
         const { accessToken, isExpired } = get();
-        return !!(accessToken && !isExpired());
+
+        if (!accessToken) return false;
+
+        if (isExpired()) {
+          alert("로그아웃 되었습니다.");
+          get().handleLogout();
+          window.location.reload();
+        }
+
+        return true;
       },
     }),
     {

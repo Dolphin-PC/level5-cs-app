@@ -5,17 +5,17 @@ import LoginForm from "@/components/organisms/LoginForm";
 import useAuth from "@/@features/Auth/useAuth";
 import { IAuth } from "@/@features/Auth/types";
 import { login } from "@/@features/Auth/api";
-import dayjs from "dayjs";
+import dayjs from "@/config/dayjsConfig";
 
 const LoginPage = () => {
-  const setLogin = useAuth((state) => state.handleLogin);
+  const setLoginInfo = useAuth((state) => state.setLoginInfo);
 
   const handleLogin = async (data: IAuth) => {
     const res = await login(data, "1h");
 
-    const expiredAt = dayjs().add(1, "hour");
+    const expiredAt = dayjs().add(1, "hour").format();
 
-    setLogin({ ...res, expiredAt });
+    setLoginInfo({ ...res, expiredAt });
   };
 
   return (
