@@ -3,37 +3,33 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import * as S from "@/styles/index.style";
 import { IComment } from "@/@features/Comment/type";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { CommentFormSchema, commentFormSchema } from "@/@features/Comment/yup";
 
 interface Props {
-  csCardId: number;
   comment?: IComment;
-  onSubmit: SubmitHandler<IComment>;
+  onSubmit: SubmitHandler<CommentFormSchema>;
 }
 
-const CommentForm = ({ csCardId, comment, onSubmit }: Props) => {
+const CommentForm = ({ comment, onSubmit }: Props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<IComment>({
-    defaultValues: {
-      id: comment?.id || 0,
-      csCardId,
-      author: comment?.author || "",
-      content: comment?.content || "",
-      password: "",
-    },
+  } = useForm<CommentFormSchema>({
+    defaultValues: comment,
+    resolver: yupResolver(commentFormSchema),
   });
 
   const isEditMode = useRef(comment !== undefined);
 
   return (
     <form
-      onSubmit={handleSubmit((res) => {
-        onSubmit(res);
+      onSubmit={(e) => {
+        handleSubmit(onSubmit)(e);
         reset();
-      })}
+      }}
     >
       <S.div.Column $gap={10}>
         <S.div.Row $gap={10} style={{}}>

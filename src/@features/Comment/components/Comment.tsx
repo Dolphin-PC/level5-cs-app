@@ -51,11 +51,7 @@ const Comment = ({ comment }: Props) => {
       </S.div.Row>
 
       {isEdit ? (
-        <CommentForm
-          csCardId={comment.csCardId}
-          onSubmit={handleUpdateComment}
-          comment={comment}
-        />
+        <CommentForm onSubmit={handleUpdateComment} comment={comment} />
       ) : (
         <Fragment>
           <h3>{comment.author}</h3>

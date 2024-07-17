@@ -1,12 +1,19 @@
 export interface IComment {
   id: number;
   csCardId: number;
-  author: string;
   content: string;
-  password: string;
 
-  userId: string;
+  author?: string;
+  password?: string;
 
-  createdAt: string;
-  updatedAt: string;
+  userId?: string;
 }
+
+export type AuthCommentReq = Omit<IComment, "id"> & {
+  userId: string;
+};
+
+export type CommentReq = Omit<IComment, "id"> & {
+  author: string;
+  password: string;
+};

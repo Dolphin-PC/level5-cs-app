@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import useComment from "./useComment";
 import { addComment, deleteComment, updateComment } from "./api";
-import { IComment } from "./type";
+import { AuthCommentReq, CommentReq, IComment } from "./type";
 
 const useCommentMutation = () => {
   const [csCardId] = useComment((state) => [state.csCardId]);
@@ -10,7 +10,18 @@ const useCommentMutation = () => {
   const queryClient = useQueryClient();
 
   const mutationAddComment = useMutation({
-    mutationFn: (data: IComment) => addComment(data),
+    mutationFn: (data: CommentReq) => addComment(data),
+    onSuccess: (res) => {
+      alert("댓글이 추가되었습니다.");
+      queryClient.setQueryData(["comments", csCardId], (prev: IComment[]) => [
+        ...prev,
+        res,
+      ]);
+    },
+  });
+
+  const mutationAddCommentAuth = useMutation({
+    mutationFn: (data: AuthCommentReq) => addComment(data),
     onSuccess: (res) => {
       alert("댓글이 추가되었습니다.");
       queryClient.setQueryData(["comments", csCardId], (prev: IComment[]) => [
@@ -45,6 +56,7 @@ const useCommentMutation = () => {
   return {
     // comments,
     mutationAddComment,
+    mutationAddCommentAuth,
     mutationUpateComment,
     mutationDeleteComment,
   };

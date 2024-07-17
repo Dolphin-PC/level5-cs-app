@@ -1,6 +1,6 @@
 import api from "@/config/axios";
 import { encrypt } from "@/util/util";
-import { IComment } from "./type";
+import { AuthCommentReq, CommentReq, IComment } from "./type";
 
 const BASE_URL = "/comments";
 
@@ -11,8 +11,10 @@ export const getCommentListById = async (id: number): Promise<IComment[]> => {
   return res.data;
 };
 
-export const addComment = async (data: IComment): Promise<IComment> => {
-  data.password = encrypt(data.password);
+export const addComment = async <T extends AuthCommentReq | CommentReq>(
+  data: T
+): Promise<IComment> => {
+  if (data.password) data.password = encrypt(data.password);
 
   const url = BASE_URL;
   const res = await api.post<IComment>(url, data);
@@ -21,7 +23,7 @@ export const addComment = async (data: IComment): Promise<IComment> => {
 };
 
 export const updateComment = async (data: IComment): Promise<IComment> => {
-  data.password = encrypt(data.password);
+  if (data.password) data.password = encrypt(data.password);
 
   const url = `${BASE_URL}/${data.id}`;
   const res = await api.put<IComment>(url, data);
