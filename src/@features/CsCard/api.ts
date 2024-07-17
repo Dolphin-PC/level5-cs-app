@@ -30,6 +30,7 @@ export const getCsCardById = async (id: number): Promise<ICsCard> => {
   return res.data;
 };
 
+/** CsCard 생성(익명 | 유저) */
 export const addNewCsCard = async <T extends AuthCsCardReq | CsCardReq>(
   data: T
 ): Promise<ICsCard> => {
@@ -39,6 +40,7 @@ export const addNewCsCard = async <T extends AuthCsCardReq | CsCardReq>(
   return res.data;
 };
 
+/** CsCard 업데이트 */
 export const updateCsCard = async (data: ICsCard): Promise<ICsCard> => {
   if (data.password) data.password = encrypt(data.password);
   const res = await api.put<ICsCard>(`${BASE_URL}/${data.id}`, data);
@@ -46,6 +48,7 @@ export const updateCsCard = async (data: ICsCard): Promise<ICsCard> => {
   return res.data;
 };
 
+/** CsCard 삭제 */
 export const deleteCsCard = async (id: number): Promise<void> => {
   await api.delete(`${BASE_URL}/${id}`);
 };

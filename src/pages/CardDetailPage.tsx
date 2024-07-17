@@ -17,18 +17,6 @@ const CardDetailPage = () => {
 
   return (
     <S.div.Container>
-      {/* <ErrorBoundary fallback={<ErrorFallbackUI />}>
-        <Suspense fallback={<LoadingFallbackUI />}>
-          <h2>CS카드</h2>
-          <CsCardPaper id={Number(id)} />
-        </Suspense>
-      </ErrorBoundary>
-
-      <Suspense fallback={<LoadingFallbackUI />}>
-        <h2>댓글</h2>
-        <CommentPaper csCardId={Number(id)} />
-      </Suspense> */}
-
       <RightPanel
         main={
           <ErrorBoundary fallback={<ErrorFallbackUI />}>

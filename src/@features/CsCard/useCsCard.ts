@@ -32,7 +32,7 @@ const useCsCard = create<CsCard>((set, get) => ({
 
   confirmPassword: () => {
     const { csCard } = get();
-    if (csCard === null) return false;
+    if (csCard === null || csCard.password === undefined) return false;
 
     const inputPassword = prompt("비밀번호를 입력해주세요");
     if (inputPassword === null) return false;
