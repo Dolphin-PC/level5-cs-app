@@ -16,7 +16,7 @@ interface Action {
   handleLogin: (data: Auth) => void;
   handleLogout: () => void;
   isExpired: () => boolean;
-  isValidate: () => boolean;
+  isAuth: () => boolean;
 }
 
 const initialState: Auth = {
@@ -39,7 +39,7 @@ const useAuth = create(
         const now = dayjs();
         return now.isAfter(dayjs());
       },
-      isValidate: () => {
+      isAuth: () => {
         const { accessToken, isExpired } = get();
         return !!(accessToken && !isExpired());
       },

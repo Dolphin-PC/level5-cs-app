@@ -1,6 +1,6 @@
 import api from "@/config/axios";
 import { encrypt } from "@/util/util";
-import { ICsCard } from "./type";
+import { ICsCard, NewAuthCardReq, NewCardReq } from "./type";
 
 const BASE_URL = "/cs_cards";
 
@@ -30,15 +30,17 @@ export const getCsCardById = async (id: number): Promise<ICsCard> => {
   return res.data;
 };
 
-export const addNewCsCard = async (data: ICsCard): Promise<ICsCard> => {
-  data.password = encrypt(data.password);
-  const res = await api.post<ICsCard>(BASE_URL, data);
+export const addNewCsCard = async <T extends NewAuthCardReq | NewCardReq>(
+  data: T
+): Promise<ICsCard> => {
+  if (data.password) data.password = encrypt(data.password);
 
+  const res = await api.post<ICsCard>(BASE_URL, data);
   return res.data;
 };
 
 export const updateCsCard = async (data: ICsCard): Promise<ICsCard> => {
-  data.password = encrypt(data.password);
+  if (data.password) data.password = encrypt(data.password);
   const res = await api.put<ICsCard>(`${BASE_URL}/${data.id}`, data);
 
   return res.data;

@@ -3,23 +3,23 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ICsCard } from "@/@features/CsCard/type";
 import * as S from "@/styles/index.style";
 import { useRef } from "react";
-import { cardFormSchema, CardFormSchema } from "@/@features/CsCard/yup";
+import { authCardFormSchema, AuthCardFormSchema } from "@/@features/CsCard/yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 interface Props {
-  onSubmit: SubmitHandler<CardFormSchema>;
+  onSubmit: (data: AuthCardFormSchema) => Promise<void>;
   card?: ICsCard;
 }
 
-const CardForm = ({ card, onSubmit }: Props) => {
+const AuthCardForm = ({ card, onSubmit }: Props) => {
   const isEditMode = useRef<boolean>(!card);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CardFormSchema>({
-    resolver: yupResolver(cardFormSchema),
+  } = useForm<AuthCardFormSchema>({
+    resolver: yupResolver(authCardFormSchema),
   });
 
   return (
@@ -38,13 +38,6 @@ const CardForm = ({ card, onSubmit }: Props) => {
       )}
       <S.div.Gap $height={20} $width={0} />
 
-      <label htmlFor="password">비밀번호</label>
-      <S.input.Input type="password" {...register("password")} />
-      {errors.password && (
-        <S.span.ErrorSpan>{errors.password.message}</S.span.ErrorSpan>
-      )}
-      <S.div.Gap $height={20} $width={0} />
-
       <S.button.Button $fullWidth type="submit">
         {isEditMode.current ? "작성" : "수정"}
       </S.button.Button>
@@ -52,4 +45,4 @@ const CardForm = ({ card, onSubmit }: Props) => {
   );
 };
 
-export default CardForm;
+export default AuthCardForm;
