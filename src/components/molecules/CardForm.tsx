@@ -8,17 +8,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 interface Props {
   onSubmit: SubmitHandler<CardFormSchema>;
-  card?: ICsCard;
+  csCard?: ICsCard;
 }
 
-const CardForm = ({ card, onSubmit }: Props) => {
-  const isEditMode = useRef<boolean>(!card);
+const CardForm = ({ csCard, onSubmit }: Props) => {
+  const isEditMode = useRef<boolean>(!csCard);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<CardFormSchema>({
+    defaultValues: { ...csCard, password: "" },
     resolver: yupResolver(cardFormSchema),
   });
 

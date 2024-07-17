@@ -40,6 +40,7 @@ const useAuth = create(
         return now.isAfter(dayjs());
       },
       isAuth: () => {
+        // TODO expired시, 로그아웃 처리
         const { accessToken, isExpired } = get();
         return !!(accessToken && !isExpired());
       },

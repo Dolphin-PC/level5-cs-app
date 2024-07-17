@@ -9,6 +9,7 @@ const useCsCardQuery = () => {
   const mutationUpdate = useMutation({
     mutationFn: (data: ICsCard) => updateCsCard(data),
     onSuccess: (res) => {
+      alert("수정되었습니다.");
       queryClient.setQueryData(["csCards", res.id], res);
     },
   });

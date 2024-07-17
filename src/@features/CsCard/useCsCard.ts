@@ -10,8 +10,6 @@ interface CsCard {
   isEditMode: boolean;
   setIsEditMode: (isEditMode: boolean) => void;
 
-  toggleEditMode: () => void;
-
   confirmPassword: () => boolean;
 }
 
@@ -21,14 +19,6 @@ const useCsCard = create<CsCard>((set, get) => ({
 
   isEditMode: false,
   setIsEditMode: (isEditMode) => set({ isEditMode }),
-
-  toggleEditMode: () => {
-    const { isEditMode, setIsEditMode, confirmPassword } = get();
-    if (isEditMode == false) {
-      if (confirmPassword() === false) return;
-    }
-    setIsEditMode(!isEditMode);
-  },
 
   confirmPassword: () => {
     const { csCard } = get();

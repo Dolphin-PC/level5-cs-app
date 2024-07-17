@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { ICsCard } from "@/@features/CsCard/type";
 import * as S from "@/styles/index.style";
@@ -7,18 +7,19 @@ import { authCardFormSchema, AuthCardFormSchema } from "@/@features/CsCard/yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 interface Props {
-  onSubmit: (data: AuthCardFormSchema) => Promise<void>;
-  card?: ICsCard;
+  onSubmit: SubmitHandler<AuthCardFormSchema>;
+  csCard?: ICsCard;
 }
 
-const AuthCardForm = ({ card, onSubmit }: Props) => {
-  const isEditMode = useRef<boolean>(!card);
+const AuthCardForm = ({ csCard, onSubmit }: Props) => {
+  const isEditMode = useRef<boolean>(!csCard);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<AuthCardFormSchema>({
+    defaultValues: csCard,
     resolver: yupResolver(authCardFormSchema),
   });
 

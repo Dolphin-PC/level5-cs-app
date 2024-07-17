@@ -8,7 +8,7 @@ import { getCsCardById } from "../api";
 
 const CsCardPaper = ({ id }: { id: number }) => {
   const { data: card } = useSuspenseQuery({
-    queryKey: ["cs-cards", id],
+    queryKey: ["csCards", id],
     queryFn: ({ queryKey }) => getCsCardById(queryKey[1] as number),
   });
   const [setCsCard, isEditMode] = useCsCard((state) => [
