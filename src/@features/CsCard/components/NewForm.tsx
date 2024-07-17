@@ -4,7 +4,7 @@ import useAuth from "@/@features/Auth/useAuth";
 import AuthCardForm from "@/components/molecules/AuthCardForm";
 import { AuthCardFormSchema, CardFormSchema } from "../yup";
 import { addNewCsCard } from "../api";
-import { NewAuthCardReq, NewCardReq } from "../type";
+import { AuthCsCardReq, CsCardReq } from "../type";
 
 const NewForm = () => {
   const isAuth = useAuth((state) => state.isAuth);
@@ -19,12 +19,12 @@ const NewForm = () => {
   const onAddNewCardAuth = async (data: AuthCardFormSchema): Promise<void> => {
     if (!userId) return;
 
-    const res = await addNewCsCard<NewAuthCardReq>({ ...data, userId });
+    const res = await addNewCsCard<AuthCsCardReq>({ ...data, userId });
     onSuccess(res.id);
   };
 
   const onAddNewCard = async (data: CardFormSchema): Promise<void> => {
-    const res = await addNewCsCard<NewCardReq>(data);
+    const res = await addNewCsCard<CsCardReq>(data);
     onSuccess(res.id);
   };
 

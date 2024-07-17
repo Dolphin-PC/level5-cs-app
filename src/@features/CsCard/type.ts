@@ -6,10 +6,10 @@ export interface ICsCard {
   userId?: string;
 }
 
-export type NewAuthCardReq = Omit<ICsCard, "id"> & {
+export type AuthCsCardReq = Omit<ICsCard, "id"> & {
   userId: string;
 };
 
-export type NewCardReq = Omit<ICsCard, "id"> & {
+export type CsCardReq = Omit<ICsCard, "id"> & {
   password: string;
 };
