@@ -7,57 +7,89 @@ import DeleteIcon from "@/assets/icons/delete.svg?react";
 import useComment from "../useComment";
 import useCommentMutation from "../useCommentMutation";
 import { IComment } from "../type";
-import CommentForm from "@/components/molecules/CommentForm";
+import CommentForm from "@/components/organisms/CommentForm";
+import useAuth from "@/@features/Auth/useAuth";
+import AuthCommentForm from "@/components/organisms/AuthCommentForm";
+import { AuthCommentFormSchema, CommentFormSchema } from "../yup";
 
 interface Props {
   comment: IComment;
 }
 
 const Comment = ({ comment }: Props) => {
-  const [isEdit, setIsEdit] = useState(false);
+  const isAuth = useAuth((state) => state.isAuth);
+  const userId = useAuth((state) => state.userId);
+
+  const [isEditMode, setIsEditMode] = useState(false);
   const confirmPassword = useComment((state) => state.confirmPassword);
 
   const { mutationDeleteComment, mutationUpateComment } = useCommentMutation();
 
-  const handleUpdateComment: SubmitHandler<IComment> = (data) => {
-    mutationUpateComment.mutate(data);
-    setIsEdit(false);
-  };
-  const handleDeleteComment = () => {
-    if (confirmPassword(comment)) {
-      mutationDeleteComment.mutate(comment.id);
+  const isOwner = comment.userId === userId;
+  const isAnonymousOwner = comment.password !== undefined;
+
+  const toggleEditMode = () => {
+    switch (true) {
+      // 수정모드 -> 뷰모드
+      case isEditMode:
+        setIsEditMode(false);
+        break;
+      // 소유자 -> 수정모드
+      case isOwner:
+        setIsEditMode(true);
+        break;
+      // 익명소유자 -> 비밀번호 확인 후 수정모드
+      default: {
+        if (confirmPassword(comment)) setIsEditMode(true);
+      }
     }
   };
 
-  const toggleEditComment = () => {
-    if (isEdit) {
-      setIsEdit(false);
-      return;
-    }
-    if (confirmPassword(comment)) {
-      setIsEdit(true);
-    }
+  const handleUpdateComment: SubmitHandler<
+    AuthCommentFormSchema | CommentFormSchema
+  > = (data) => {
+    mutationUpateComment.mutate({ ...comment, ...data });
+    setIsEditMode(false);
   };
+
+  const handleDeleteComment = () => {
+    if (isOwner && !confirm("정말 삭제하시겠습니까?")) return;
+    if (isAnonymousOwner && !confirmPassword(comment)) return;
+
+    mutationDeleteComment.mutate(comment.id);
+  };
+
+  const onUpdateCommentAuth = (data: AuthCommentFormSchema) =>
+    handleUpdateComment(data);
+  const onUpdateComment = (data: CommentFormSchema) =>
+    handleUpdateComment(data);
 
   return (
     <S.div.Paper key={comment.id}>
-      <S.div.Row style={{ justifyContent: "flex-end" }}>
-        <S.button.IconButton onClick={handleDeleteComment}>
-          <DeleteIcon />
-        </S.button.IconButton>
-        <S.button.IconButton onClick={toggleEditComment}>
-          <EditIcon />
-        </S.button.IconButton>
-      </S.div.Row>
+      {(isOwner || isAnonymousOwner) && (
+        <S.div.Row style={{ justifyContent: "flex-end" }}>
+          <S.button.IconButton onClick={handleDeleteComment}>
+            <DeleteIcon />
+          </S.button.IconButton>
+          <S.button.IconButton onClick={toggleEditMode}>
+            <EditIcon />
+          </S.button.IconButton>
+        </S.div.Row>
+      )}
 
-      {isEdit ? (
-        <CommentForm onSubmit={handleUpdateComment} comment={comment} />
-      ) : (
+      {!isEditMode && (
         <Fragment>
-          <h3>{comment.author}</h3>
+          <h3>{comment.userId ?? "익명"}</h3>
           <p>{comment.content}</p>
         </Fragment>
       )}
+
+      {isEditMode &&
+        (isAuth() ? (
+          <AuthCommentForm onSubmit={onUpdateCommentAuth} comment={comment} />
+        ) : (
+          <CommentForm onSubmit={onUpdateComment} comment={comment} />
+        ))}
     </S.div.Paper>
   );
 };

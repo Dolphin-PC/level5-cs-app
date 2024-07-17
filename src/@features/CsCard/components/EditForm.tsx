@@ -1,8 +1,8 @@
-import CardForm from "@/components/molecules/CardForm";
+import CardForm from "@/components/organisms/CardForm";
 import useCsCard from "../useCsCard";
 import useCsCardQuery from "../useCsCardQuery";
 import useAuth from "@/@features/Auth/useAuth";
-import AuthCardForm from "@/components/molecules/AuthCardForm";
+import AuthCardForm from "@/components/organisms/AuthCardForm";
 import { AuthCardFormSchema, CardFormSchema } from "../yup";
 
 const EditForm = () => {

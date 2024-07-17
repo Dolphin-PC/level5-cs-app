@@ -2,7 +2,6 @@ import theme from "@/styles/theme.style";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
 
 interface Props {
@@ -15,9 +14,7 @@ const Provider = ({ children }: Props) => {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
 
-      <RecoilRoot>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
-      </RecoilRoot>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </QueryClientProvider>
   );
 };

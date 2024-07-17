@@ -2,9 +2,9 @@ import { SubmitHandler } from "react-hook-form";
 
 import useComment from "../useComment";
 import useCommentMutation from "../useCommentMutation";
-import CommentForm from "@/components/molecules/CommentForm";
+import CommentForm from "@/components/organisms/CommentForm";
 import useAuth from "@/@features/Auth/useAuth";
-import AuthCommentForm from "@/components/molecules/AuthCommentForm";
+import AuthCommentForm from "@/components/organisms/AuthCommentForm";
 import { AuthCommentFormSchema, CommentFormSchema } from "../yup";
 
 const NewForm = () => {

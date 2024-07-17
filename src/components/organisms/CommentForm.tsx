@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import * as S from "@/styles/index.style";
@@ -22,8 +21,6 @@ const CommentForm = ({ comment, onSubmit }: Props) => {
     resolver: yupResolver(commentFormSchema),
   });
 
-  const isEditMode = useRef(comment !== undefined);
-
   return (
     <form
       onSubmit={(e) => {
@@ -35,35 +32,19 @@ const CommentForm = ({ comment, onSubmit }: Props) => {
         <S.div.Row $gap={10} style={{}}>
           <S.div.Column>
             <S.input.Input
-              type="text"
-              placeholder="작성자명"
-              readOnly={isEditMode.current}
-              {...register("author", {
-                required: true,
-              })}
-            />
-            {errors.author && (
-              <S.span.ErrorSpan>작성자명을 입력해주세요.</S.span.ErrorSpan>
-            )}
-          </S.div.Column>
-          <S.div.Column>
-            <S.input.Input
               type="password"
               placeholder="비밀번호"
-              {...register("password", { required: true })}
+              {...register("password")}
             />
             {errors.password && (
-              <S.span.ErrorSpan>비밀번호를 입력해주세요.</S.span.ErrorSpan>
+              <S.span.ErrorSpan>{errors.password.message}</S.span.ErrorSpan>
             )}
           </S.div.Column>
         </S.div.Row>
         <S.div.Column>
-          <S.input.TextArea
-            placeholder="댓글"
-            {...register("content", { required: true })}
-          />
+          <S.input.TextArea placeholder="댓글" {...register("content")} />
           {errors.content && (
-            <S.span.ErrorSpan>댓글내용을 입력해주세요.</S.span.ErrorSpan>
+            <S.span.ErrorSpan>{errors.content.message}</S.span.ErrorSpan>
           )}
         </S.div.Column>
         <S.button.Button>댓글 {comment ? "수정" : "작성"}</S.button.Button>

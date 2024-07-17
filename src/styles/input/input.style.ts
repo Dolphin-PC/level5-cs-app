@@ -15,5 +15,5 @@ export const Input = styled.input`
 export const TextArea = styled.textarea`
   ${defaultStyle}
   resize: none;
-  /* height: 100px; */
+  height: 100px;
 `;

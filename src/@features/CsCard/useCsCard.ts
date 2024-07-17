@@ -15,7 +15,7 @@ interface CsCard {
 
 const useCsCard = create<CsCard>((set, get) => ({
   csCard: null,
-  setCsCard: (csCard) => set({ csCard }),
+  setCsCard: (csCard) => set({ csCard, isEditMode: false }),
 
   isEditMode: false,
   setIsEditMode: (isEditMode) => set({ isEditMode }),

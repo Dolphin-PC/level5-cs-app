@@ -3,7 +3,6 @@ export interface IComment {
   csCardId: number;
   content: string;
 
-  author?: string;
   password?: string;
 
   userId?: string;
@@ -14,6 +13,5 @@ export type AuthCommentReq = Omit<IComment, "id"> & {
 };
 
 export type CommentReq = Omit<IComment, "id"> & {
-  author: string;
   password: string;
 };
