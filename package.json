@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@tanstack/react-query": "^5.51.1",
     "@tanstack/react-query-devtools": "^5.51.1",
     "@types/lodash": "^4.17.6",
@@ -27,6 +28,7 @@
     "recoil": "^0.7.7",
     "rollup-plugin-terser": "^7.0.2",
     "styled-components": "^6.1.11",
+    "yup": "^1.4.0",
     "zustand": "^4.5.4"
   },
   "devDependencies": {

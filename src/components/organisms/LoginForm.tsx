@@ -1,25 +1,22 @@
-import { login } from "@/api/auth";
-import * as S from "@/styles/index.style";
-import { IAuth } from "@/types/auth";
-import React from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
-const LoginForm = () => {
+import * as S from "@/styles/index.style";
+import { IAuth } from "@/@features/Auth/types";
+import { loginSchema, LoginSchema } from "@/@features/Auth/yup";
+
+interface Props {
+  handleLogin: (data: IAuth) => void;
+}
+
+const LoginForm = ({ handleLogin }: Props) => {
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<IAuth>({
-    defaultValues: {
-      id: "",
-      password: "",
-    },
+  } = useForm<LoginSchema>({
+    resolver: yupResolver(loginSchema),
   });
-
-  const handleLogin = async (data: IAuth) => {
-    const res = await login(data);
-    console.log({ res });
-  };
 
   return (
     <form onSubmit={handleSubmit(handleLogin)}>
@@ -30,7 +27,7 @@ const LoginForm = () => {
             type="text"
             id="id"
             placeholder="아이디"
-            {...register("id", { required: "아이디를 입력해주세요." })}
+            {...register("id")}
           />
           {errors.id && (
             <S.span.ErrorSpan>{errors.id.message}</S.span.ErrorSpan>
@@ -43,9 +40,7 @@ const LoginForm = () => {
             type="password"
             id="password"
             placeholder="비밀번호"
-            {...register("password", {
-              required: "비밀번호를 입력해주세요.",
-            })}
+            {...register("password")}
           />
           {errors.password && (
             <S.span.ErrorSpan>{errors.password.message}</S.span.ErrorSpan>

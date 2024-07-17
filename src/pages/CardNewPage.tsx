@@ -1,5 +1,4 @@
 import { addNewCsCard } from "@/api/cs-cards";
-import Header from "@/components/atoms/Header";
 import CardForm from "@/components/molecules/CardForm";
 import * as S from "@/styles/index.style";
 import { ICsCard } from "@/types/csCard";
@@ -22,8 +21,6 @@ const CardNewPage = () => {
   };
   return (
     <S.div.Container>
-      <Header />
-
       <main style={{ width: "50%" }}>
         <h1>CS카드 만들기</h1>
         <CardForm onSubmit={onAddNewCard} />;

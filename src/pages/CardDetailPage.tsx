@@ -3,7 +3,6 @@ import { ErrorBoundary } from "react-error-boundary";
 import { Navigate, useParams } from "react-router-dom";
 
 import * as S from "@/styles/index.style";
-import Header from "@/components/atoms/Header";
 import ErrorFallbackUI from "@/components/atoms/ErrorFallback";
 import LoadingFallbackUI from "@/components/atoms/LoadingFallbackUI/LoadingFallbackUI";
 import RightPanel from "@/components/templates/RightPanel";
@@ -18,8 +17,6 @@ const CardDetailPage = () => {
 
   return (
     <S.div.Container>
-      <Header />
-
       {/* <ErrorBoundary fallback={<ErrorFallbackUI />}>
         <Suspense fallback={<LoadingFallbackUI />}>
           <h2>CS카드</h2>

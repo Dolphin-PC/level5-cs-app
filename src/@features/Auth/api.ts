@@ -1,22 +1,19 @@
-import { authApi } from "@/config/axios";
-import { IAuth } from "@/types/auth";
+import { authApi } from "../../config/axios";
+import {
+  LoginReq,
+  ProfileReq,
+  RegisterReq,
+  RegisterRes,
+  UserRes,
+} from "./types";
 
-interface RegisterReq extends IAuth {
-  nickname: string;
-}
-interface RegisterRes {
-  message: string;
-  success: boolean;
-}
-
+/** POST::회원가입 */
 export const register = async (req: RegisterReq): Promise<RegisterRes> => {
   const res = await authApi.post("/register", req);
   return res.data;
 };
 
-interface LoginReq extends IAuth {}
-
-interface LoginRes {
+export interface LoginRes {
   accessToken: string;
   userId: string;
   success: boolean;
@@ -26,6 +23,7 @@ interface LoginRes {
 
 type ExpiresIn = "10s" | "10m" | "1h" | "1d";
 
+/** POST::로그인 */
 export const login = async (
   req: LoginReq,
   expiresIn?: ExpiresIn
@@ -36,15 +34,26 @@ export const login = async (
   return res.data;
 };
 
-interface UserRes {
-  id: string;
-  nickname: string;
-  avatar: unknown;
-  success: boolean;
-}
-
+/** GET::사용자 정보확인 */
 export const user = async (): Promise<UserRes> => {
   const res = await authApi.get("/user", {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  });
+  return res.data;
+};
+
+/** PATCH::프로필 변경 */
+export const profile = async ({
+  avatar,
+  nickname,
+}: ProfileReq): Promise<UserRes> => {
+  const formData = new FormData();
+  formData.append("avatar", avatar);
+  formData.append("nickname", nickname);
+
+  const res = await authApi.post("/profile", formData, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     },

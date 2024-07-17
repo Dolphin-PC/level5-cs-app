@@ -1,6 +1,5 @@
 import Search from "@/@features/Search";
 import useSearch from "@/@features/Search/useSearch";
-import Header from "@/components/atoms/Header";
 import LoadingFallbackUI from "@/components/atoms/LoadingFallbackUI/LoadingFallbackUI";
 import CsCardList from "@/components/organisms/CsCardList";
 import * as S from "@/styles/index.style";
@@ -12,7 +11,6 @@ const MainPage = (): React.ReactNode => {
 
   return (
     <S.div.Container>
-      <Header />
       <h1>Dev Study Hub</h1>
 
       <S.div.Column $gap={30} style={{ width: "100%", alignItems: "center" }}>
