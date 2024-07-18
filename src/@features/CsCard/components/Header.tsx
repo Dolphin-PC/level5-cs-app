@@ -45,9 +45,11 @@ const Header = () => {
 
   return (
     <S.div.Row style={{ justifyContent: "space-between" }}>
-      <p>
-        작성자 : {isAnonymousOwner ? "익명" : csCard.nickname ?? csCard.userId}
-      </p>
+      <S.div.Row $gap={10}>
+        <S.img.Profile $imgSrc={csCard.avatar} />
+        {isAnonymousOwner ? "익명" : csCard.nickname ?? csCard.userId}
+      </S.div.Row>
+
       {isOwner || isAnonymousOwner ? (
         <S.div.Row>
           <S.button.IconButton onClick={onDeleteCard}>

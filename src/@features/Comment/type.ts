@@ -6,12 +6,12 @@ export interface IComment {
   password?: string;
 
   userId?: string;
+  avatar?: string | null;
 }
 
 export type AuthCommentReq = Omit<IComment, "id"> & {
   userId: string;
+  avatar: string | null;
 };
 
-export type CommentReq = Omit<IComment, "id"> & {
-  password: string;
-};
+export type CommentReq = Omit<IComment, "id"> & Required<Pick<IComment, "password">>;

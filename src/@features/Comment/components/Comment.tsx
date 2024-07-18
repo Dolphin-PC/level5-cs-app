@@ -45,9 +45,7 @@ const Comment = ({ comment }: Props) => {
     }
   };
 
-  const handleUpdateComment: SubmitHandler<
-    AuthCommentFormSchema | CommentFormSchema
-  > = (data) => {
+  const handleUpdateComment: SubmitHandler<AuthCommentFormSchema | CommentFormSchema> = (data) => {
     mutationUpateComment.mutate({ ...comment, ...data });
     setIsEditMode(false);
   };
@@ -59,10 +57,8 @@ const Comment = ({ comment }: Props) => {
     mutationDeleteComment.mutate(comment.id);
   };
 
-  const onUpdateCommentAuth = (data: AuthCommentFormSchema) =>
-    handleUpdateComment(data);
-  const onUpdateComment = (data: CommentFormSchema) =>
-    handleUpdateComment(data);
+  const onUpdateCommentAuth = (data: AuthCommentFormSchema) => handleUpdateComment(data);
+  const onUpdateComment = (data: CommentFormSchema) => handleUpdateComment(data);
 
   return (
     <S.div.Paper key={comment.id}>
@@ -79,17 +75,15 @@ const Comment = ({ comment }: Props) => {
 
       {!isEditMode && (
         <Fragment>
-          <h3>{comment.userId ?? "익명"}</h3>
+          <S.div.Row $gap={10}>
+            <S.img.Profile $imgSrc={comment.avatar} />
+            <h3>{comment.userId ?? "익명"}</h3>
+          </S.div.Row>
           <p>{comment.content}</p>
         </Fragment>
       )}
 
-      {isEditMode &&
-        (isAuth() ? (
-          <AuthCommentForm onSubmit={onUpdateCommentAuth} comment={comment} />
-        ) : (
-          <CommentForm onSubmit={onUpdateComment} comment={comment} />
-        ))}
+      {isEditMode && (isAuth() ? <AuthCommentForm onSubmit={onUpdateCommentAuth} comment={comment} /> : <CommentForm onSubmit={onUpdateComment} comment={comment} />)}
     </S.div.Paper>
   );
 };

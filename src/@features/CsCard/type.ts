@@ -5,11 +5,13 @@ export interface ICsCard {
   password?: string;
   userId?: string;
   nickname?: string;
+  avatar?: string | null;
 }
 
 export type AuthCsCardReq = Omit<ICsCard, "id"> & {
   userId: string;
   nickname: string;
+  avatar: string | null;
 };
 
 export type CsCardReq = Omit<ICsCard, "id"> & {

@@ -10,13 +10,14 @@ import { AuthCommentFormSchema, CommentFormSchema } from "../yup";
 const NewForm = () => {
   const isAuth = useAuth((state) => state.isAuth);
   const userId = useAuth((state) => state.userId);
+  const avatar = useAuth((state) => state.avatar);
   const csCardId = useComment((state) => state.csCardId);
 
   const { mutationAddComment, mutationAddCommentAuth } = useCommentMutation();
 
   const onAddCommentAuth: SubmitHandler<AuthCommentFormSchema> = (data) => {
     if (csCardId === null || userId === null) return;
-    mutationAddCommentAuth.mutate({ ...data, csCardId, userId });
+    mutationAddCommentAuth.mutate({ ...data, csCardId, userId, avatar });
   };
 
   const onAddComment: SubmitHandler<CommentFormSchema> = (data) => {
@@ -25,11 +26,7 @@ const NewForm = () => {
   };
 
   if (csCardId === null) return null;
-  return isAuth() ? (
-    <AuthCommentForm onSubmit={onAddCommentAuth} />
-  ) : (
-    <CommentForm onSubmit={onAddComment} />
-  );
+  return isAuth() ? <AuthCommentForm onSubmit={onAddCommentAuth} /> : <CommentForm onSubmit={onAddComment} />;
 };
 
 export default NewForm;

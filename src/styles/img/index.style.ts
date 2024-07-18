@@ -1,9 +1,15 @@
 import styled from "styled-components";
 
-export const Profile = styled.div<{ $imgSrc: string }>`
-  width: 100px;
-  height: 100px;
-  background-image: url(${(props) => props.$imgSrc});
-  background-size: cover;
-  background-position: center;
+interface ProfileProps {
+  $imgSrc?: string | null;
+}
+export const Profile = styled.img<ProfileProps>`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+
+  ${({ $imgSrc }) => `
+    background-image: url(${$imgSrc || "https://t3.ftcdn.net/jpg/05/16/27/58/360_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg"});
+    background-size: cover;
+  `}
 `;

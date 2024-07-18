@@ -7,11 +7,7 @@ import { addNewCsCard } from "../api";
 import { AuthCsCardReq, CsCardReq } from "../type";
 
 const NewForm = () => {
-  const [isAuth, userId, nickname] = useAuth((state) => [
-    state.isAuth,
-    state.userId,
-    state.nickname,
-  ]);
+  const [isAuth, userId, nickname, avatar] = useAuth((state) => [state.isAuth, state.userId, state.nickname, state.avatar]);
 
   const navigate = useNavigate();
 
@@ -27,6 +23,7 @@ const NewForm = () => {
       ...data,
       userId,
       nickname: nickname || userId,
+      avatar,
     });
     onSuccess(res.id);
   };
@@ -36,11 +33,7 @@ const NewForm = () => {
     onSuccess(res.id);
   };
 
-  return isAuth() ? (
-    <AuthCardForm onSubmit={onAddNewCardAuth} />
-  ) : (
-    <CardForm onSubmit={onAddNewCard} />
-  );
+  return isAuth() ? <AuthCardForm onSubmit={onAddNewCardAuth} /> : <CardForm onSubmit={onAddNewCard} />;
 };
 
 export default NewForm;
