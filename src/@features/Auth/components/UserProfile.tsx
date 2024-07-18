@@ -33,7 +33,7 @@ const UserProfile = () => {
 
         <S.div.Column>
           <label>프로필 이미지</label>
-          <S.img.Profile $imgSrc={profile.avatar} />
+          <S.img.Profile $imgSrc={profile.avatar} $size="large" />
         </S.div.Column>
       </S.div.Column>
 
