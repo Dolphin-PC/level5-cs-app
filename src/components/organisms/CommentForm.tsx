@@ -17,13 +17,17 @@ const CommentForm = ({ comment, onSubmit }: Props) => {
     formState: { errors },
     reset,
   } = useForm<CommentFormSchema>({
-    defaultValues: comment,
+    defaultValues: {
+      ...comment,
+      password: "",
+    },
     resolver: yupResolver(commentFormSchema),
   });
 
   return (
     <form
       onSubmit={(e) => {
+        console.log({ e });
         handleSubmit(onSubmit)(e);
         reset();
       }}
@@ -31,21 +35,13 @@ const CommentForm = ({ comment, onSubmit }: Props) => {
       <S.div.Column $gap={10}>
         <S.div.Row $gap={10} style={{}}>
           <S.div.Column>
-            <S.input.Input
-              type="password"
-              placeholder="비밀번호"
-              {...register("password")}
-            />
-            {errors.password && (
-              <S.span.ErrorSpan>{errors.password.message}</S.span.ErrorSpan>
-            )}
+            <S.input.Input type="password" placeholder="비밀번호" {...register("password")} />
+            {errors.password && <S.span.ErrorSpan>{errors.password.message}</S.span.ErrorSpan>}
           </S.div.Column>
         </S.div.Row>
         <S.div.Column>
           <S.input.TextArea placeholder="댓글" {...register("content")} />
-          {errors.content && (
-            <S.span.ErrorSpan>{errors.content.message}</S.span.ErrorSpan>
-          )}
+          {errors.content && <S.span.ErrorSpan>{errors.content.message}</S.span.ErrorSpan>}
         </S.div.Column>
         <S.button.Button>댓글 {comment ? "수정" : "작성"}</S.button.Button>
       </S.div.Column>

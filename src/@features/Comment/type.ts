@@ -14,4 +14,6 @@ export type AuthCommentReq = Omit<IComment, "id"> & {
   avatar: string | null;
 };
 
-export type CommentReq = Omit<IComment, "id"> & Required<Pick<IComment, "password">>;
+export type CommentReq = Omit<IComment, "id"> & {
+  password: string;
+};
