@@ -2,15 +2,17 @@ import { SubmitHandler } from "react-hook-form";
 import React, { Fragment, useState } from "react";
 
 import * as S from "@/styles/index.style";
-import EditIcon from "@/assets/icons/edit.svg?react";
-import DeleteIcon from "@/assets/icons/delete.svg?react";
+import { IComment } from "../type";
+import { AuthCommentFormSchema, CommentFormSchema } from "../yup";
+
 import useComment from "../useComment";
 import useCommentMutation from "../useCommentMutation";
-import { IComment } from "../type";
-import CommentForm from "@/components/organisms/CommentForm";
 import useAuth from "@/@features/Auth/useAuth";
-import AuthCommentForm from "@/components/organisms/AuthCommentForm";
-import { AuthCommentFormSchema, CommentFormSchema } from "../yup";
+
+import EditIcon from "@/assets/icons/edit.svg?react";
+import DeleteIcon from "@/assets/icons/delete.svg?react";
+import CommentForm from "@/components/organisms/CommentForm";
+import CommentFormAuth from "@/components/organisms/CommentFormAuth";
 
 interface Props {
   comment: IComment;
@@ -83,7 +85,7 @@ const Comment = ({ comment }: Props) => {
         </Fragment>
       )}
 
-      {isEditMode && (isAuth() ? <AuthCommentForm onSubmit={onUpdateCommentAuth} comment={comment} /> : <CommentForm onSubmit={onUpdateComment} comment={comment} />)}
+      {isEditMode && (isAuth() ? <CommentFormAuth onSubmit={onUpdateCommentAuth} comment={comment} /> : <CommentForm onSubmit={onUpdateComment} comment={comment} />)}
     </S.div.Paper>
   );
 };

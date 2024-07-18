@@ -4,8 +4,8 @@ import useComment from "../useComment";
 import useCommentMutation from "../useCommentMutation";
 import CommentForm from "@/components/organisms/CommentForm";
 import useAuth from "@/@features/Auth/useAuth";
-import AuthCommentForm from "@/components/organisms/AuthCommentForm";
 import { AuthCommentFormSchema, CommentFormSchema } from "../yup";
+import CommentFormAuth from "@/components/organisms/CommentFormAuth";
 
 const NewForm = () => {
   const isAuth = useAuth((state) => state.isAuth);
@@ -26,7 +26,7 @@ const NewForm = () => {
   };
 
   if (csCardId === null) return null;
-  return isAuth() ? <AuthCommentForm onSubmit={onAddCommentAuth} /> : <CommentForm onSubmit={onAddComment} />;
+  return isAuth() ? <CommentFormAuth onSubmit={onAddCommentAuth} /> : <CommentForm onSubmit={onAddComment} />;
 };
 
 export default NewForm;

@@ -11,7 +11,7 @@ interface Props {
   csCard?: ICsCard;
 }
 
-const AuthCardForm = ({ csCard, onSubmit }: Props) => {
+const CardFormAuth = ({ csCard, onSubmit }: Props) => {
   const isEditMode = useRef<boolean>(!csCard);
 
   const {
@@ -27,16 +27,12 @@ const AuthCardForm = ({ csCard, onSubmit }: Props) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="title">제목</label>
       <S.input.Input type="text" {...register("title")} />
-      {errors.title && (
-        <S.span.ErrorSpan>{errors.title.message}</S.span.ErrorSpan>
-      )}
+      {errors.title && <S.span.ErrorSpan>{errors.title.message}</S.span.ErrorSpan>}
       <S.div.Gap $height={20} $width={0} />
 
       <label htmlFor="content">내용</label>
       <S.input.TextArea {...register("content")} />
-      {errors.content && (
-        <S.span.ErrorSpan>{errors.content.message}</S.span.ErrorSpan>
-      )}
+      {errors.content && <S.span.ErrorSpan>{errors.content.message}</S.span.ErrorSpan>}
       <S.div.Gap $height={20} $width={0} />
 
       <S.button.Button $fullWidth type="submit">
@@ -46,4 +42,4 @@ const AuthCardForm = ({ csCard, onSubmit }: Props) => {
   );
 };
 
-export default AuthCardForm;
+export default CardFormAuth;

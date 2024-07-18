@@ -1,10 +1,12 @@
-import CardForm from "@/components/organisms/CardForm";
 import { useNavigate } from "react-router-dom";
-import useAuth from "@/@features/Auth/useAuth";
-import AuthCardForm from "@/components/organisms/AuthCardForm";
+
 import { AuthCardFormSchema, CardFormSchema } from "../yup";
-import { addNewCsCard } from "../api";
 import { AuthCsCardReq, CsCardReq } from "../type";
+import { addNewCsCard } from "../api";
+import useAuth from "@/@features/Auth/useAuth";
+
+import CardFormAuth from "@/components/organisms/CardFormAuth";
+import CardForm from "@/components/organisms/CardForm";
 
 const NewForm = () => {
   const [isAuth, userId, nickname, avatar] = useAuth((state) => [state.isAuth, state.userId, state.nickname, state.avatar]);
@@ -33,7 +35,7 @@ const NewForm = () => {
     onSuccess(res.id);
   };
 
-  return isAuth() ? <AuthCardForm onSubmit={onAddNewCardAuth} /> : <CardForm onSubmit={onAddNewCard} />;
+  return isAuth() ? <CardFormAuth onSubmit={onAddNewCardAuth} /> : <CardForm onSubmit={onAddNewCard} />;
 };
 
 export default NewForm;

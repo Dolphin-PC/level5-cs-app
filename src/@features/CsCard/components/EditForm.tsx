@@ -1,9 +1,10 @@
-import CardForm from "@/components/organisms/CardForm";
+import { AuthCardFormSchema, CardFormSchema } from "../yup";
 import useCsCard from "../useCsCard";
 import useCsCardQuery from "../useCsCardQuery";
 import useAuth from "@/@features/Auth/useAuth";
-import AuthCardForm from "@/components/organisms/AuthCardForm";
-import { AuthCardFormSchema, CardFormSchema } from "../yup";
+
+import CardFormAuth from "@/components/organisms/CardFormAuth";
+import CardForm from "@/components/organisms/CardForm";
 
 const EditForm = () => {
   const isAuth = useAuth((state) => state.isAuth);
@@ -23,11 +24,7 @@ const EditForm = () => {
   const onEditCard = (data: CardFormSchema) => onEdit(data);
 
   if (csCard === null) return null;
-  return isAuth() && userId === csCard.userId ? (
-    <AuthCardForm onSubmit={onEditCardAuth} csCard={csCard} />
-  ) : (
-    <CardForm onSubmit={onEditCard} csCard={csCard} />
-  );
+  return isAuth() && userId === csCard.userId ? <CardFormAuth onSubmit={onEditCardAuth} csCard={csCard} /> : <CardForm onSubmit={onEditCard} csCard={csCard} />;
 };
 
 export default EditForm;

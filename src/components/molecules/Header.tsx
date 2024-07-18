@@ -1,6 +1,7 @@
+import { Link, useNavigate } from "react-router-dom";
+
 import useAuth from "@/@features/Auth/useAuth";
 import * as S from "@/styles/index.style";
-import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();

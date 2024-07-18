@@ -2,19 +2,17 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { Fragment, useEffect } from "react";
 
 import * as S from "@/styles/index.style";
-import useCsCard from "@/@features/CsCard/useCsCard";
-import CsCard from "@/@features/CsCard";
 import { getCsCardById } from "../api";
+import useCsCard from "@/@features/CsCard/useCsCard";
+
+import CsCard from "@/@features/CsCard";
 
 const CsCardPaper = ({ id }: { id: number }) => {
   const { data: card } = useSuspenseQuery({
     queryKey: ["csCards", id],
     queryFn: ({ queryKey }) => getCsCardById(queryKey[1] as number),
   });
-  const [setCsCard, isEditMode] = useCsCard((state) => [
-    state.setCsCard,
-    state.isEditMode,
-  ]);
+  const [setCsCard, isEditMode] = useCsCard((state) => [state.setCsCard, state.isEditMode]);
 
   useEffect(() => {
     setCsCard(card);
