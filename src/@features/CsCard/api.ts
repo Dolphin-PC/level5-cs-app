@@ -1,6 +1,7 @@
 import api from "@/config/axios";
 import { encrypt } from "@/util/util";
 import { ICsCard, AuthCsCardReq, CsCardReq } from "./type";
+import { deleteComment, getCommentListById } from "../Comment/api";
 
 const BASE_URL = "/cs_cards";
 
@@ -45,9 +46,14 @@ export const updateCsCard = async (data: ICsCard): Promise<ICsCard> => {
   return res.data;
 };
 
-/** CsCard 삭제 */
+/** CsCard 삭제 + Comment삭제*/
 export const deleteCsCard = async (id: number): Promise<void> => {
   await api.delete(`${BASE_URL}/${id}`);
+
+  const res = await getCommentListById(id);
+  res.forEach(async (comment) => {
+    await deleteComment(comment.id);
+  });
 };
 
 export const getNextCsCardId = async (id: number, search?: string): Promise<ICsCard[]> => {
