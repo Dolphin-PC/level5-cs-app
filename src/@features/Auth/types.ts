@@ -32,6 +32,12 @@ export interface UserRes {
 
 export interface ProfileReq {
   accessToken: string;
-  avatar: File;
+  avatar?: File;
+  nickname?: string;
+}
+export interface ProfileRes {
+  avatar: string;
   nickname: string;
+  message: string;
+  success: boolean;
 }

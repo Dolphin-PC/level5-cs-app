@@ -175,29 +175,11 @@
       "password": "U2FsdGVkX1997GRXDnKloyJBmH1wTlyXVcamYoNxV40="
     },
     {
-      "title": "qwer",
-      "content": "qwer",
-      "password": "U2FsdGVkX19t+VvCdSMJ+Kk6e9HGbLJqW0Cr2PNDFS0=",
-      "id": 32
-    },
-    {
-      "title": "456123sadsadsa",
-      "content": "sadsadsa",
+      "title": "test22",
+      "content": "test22",
       "userId": "pcy474",
-      "id": 33
-    },
-    {
-      "title": "qwe",
-      "content": "qwe",
-      "userId": "pcy474",
-      "id": 34
-    },
-    {
-      "title": "qwer",
-      "content": "qwer",
-      "userId": "pcy474",
-      "nickname": "pcy",
-      "id": 35
+      "nickname": "돌고래",
+      "id": 31
     }
   ],
   "comments": [
@@ -258,6 +240,12 @@
       "csCardId": 34,
       "userId": "pcy474",
       "id": 10
+    },
+    {
+      "content": "qwe",
+      "csCardId": 31,
+      "userId": "pcy474",
+      "id": 11
     }
   ]
 }

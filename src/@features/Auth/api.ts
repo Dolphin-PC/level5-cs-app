@@ -1,13 +1,5 @@
 import { authApi } from "../../config/axios";
-import {
-  ExpiresIn,
-  LoginReq,
-  LoginRes,
-  ProfileReq,
-  RegisterReq,
-  RegisterRes,
-  UserRes,
-} from "./types";
+import { ExpiresIn, LoginReq, LoginRes, ProfileReq, ProfileRes, RegisterReq, RegisterRes, UserRes } from "./types";
 
 /** POST::회원가입 */
 export const register = async (req: RegisterReq): Promise<RegisterRes> => {
@@ -16,10 +8,7 @@ export const register = async (req: RegisterReq): Promise<RegisterRes> => {
 };
 
 /** POST::로그인 */
-export const login = async (
-  req: LoginReq,
-  expiresIn?: ExpiresIn
-): Promise<LoginRes> => {
+export const login = async (req: LoginReq, expiresIn?: ExpiresIn): Promise<LoginRes> => {
   if (!expiresIn) expiresIn = "1h";
 
   const res = await authApi.post(`/login?expiresIn=${expiresIn}`, req);
@@ -37,14 +26,10 @@ export const user = async (accessToken: string): Promise<UserRes> => {
 };
 
 /** PATCH::프로필 변경 */
-export const profile = async ({
-  accessToken,
-  avatar,
-  nickname,
-}: ProfileReq): Promise<UserRes> => {
+export const profile = async ({ accessToken, avatar, nickname }: ProfileReq): Promise<ProfileRes> => {
   const formData = new FormData();
-  formData.append("avatar", avatar);
-  formData.append("nickname", nickname);
+  avatar && formData.append("avatar", avatar);
+  nickname && formData.append("nickname", nickname);
 
   const res = await authApi.patch("/profile", formData, {
     headers: {

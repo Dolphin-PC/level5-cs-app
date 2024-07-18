@@ -22,8 +22,7 @@ export const Button = styled.button<Props>`
 
   ${({ $fullWidth }) => $fullWidth && "width: 100%;"}
 
-  ${({ $color = "primary" }) =>
-    $color === "primary" ? primaryStyle : secondaryStyle}
+  ${({ $color = "primary" }) => ($color === "primary" ? primaryStyle : secondaryStyle)}
 
   ${({ $size = "medium" }) => {
     switch ($size) {
@@ -58,8 +57,26 @@ export const CircleButton = styled.button<Props>`
   height: 70px;
   font-size: large;
 
-  ${({ $color = "primary" }) =>
-    $color === "primary" ? primaryStyle : secondaryStyle};
+  ${({ $color = "primary" }) => ($color === "primary" ? primaryStyle : secondaryStyle)};
+`;
+
+interface ProfileButtonProps {
+  $imgSrc: string | null;
+}
+export const ProfileButton = styled.button<ProfileButtonProps>`
+  ${defaultButtonStyle}
+  ${({ $imgSrc }) => `
+    background-image: url(${$imgSrc || "https://t3.ftcdn.net/jpg/05/16/27/58/360_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg"});
+    background-size: cover;
+  `}
+  
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
 `;
 
 const primaryStyle = css`

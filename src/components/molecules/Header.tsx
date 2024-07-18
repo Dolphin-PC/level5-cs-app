@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Header = () => {
   const navigate = useNavigate();
 
+  const avatar = useAuth((state) => state.avatar);
   const accessToken = useAuth((state) => state.accessToken);
   const handleLogout = useAuth((state) => state.handleLogout);
 
@@ -24,12 +25,10 @@ const Header = () => {
       <S.div.Row $gap={20}>
         {accessToken && (
           <Link to="/my">
-            <S.button.Button $color="secondary">MY PAGE</S.button.Button>
+            <S.button.ProfileButton $imgSrc={avatar} />
           </Link>
         )}
-        <S.button.Button onClick={toggleAuth}>
-          {accessToken ? "로그아웃" : "로그인"}
-        </S.button.Button>
+        <S.button.Button onClick={toggleAuth}>{accessToken ? "로그아웃" : "로그인"}</S.button.Button>
       </S.div.Row>
     </S.layout.Header>
   );

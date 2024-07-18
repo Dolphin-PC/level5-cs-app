@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { IAuth } from "./types";
+import { IAuth, UserRes } from "./types";
 import dayjs from "@/config/dayjsConfig";
 
 interface Auth {
   accessToken: string | null;
   userId: IAuth["id"] | null;
-  avatar: unknown | null;
+  avatar: string | null;
   success: boolean;
   nickname: string | null;
   expiredAt: string | null;
@@ -17,6 +17,7 @@ interface Action {
   handleLogout: () => void;
   isExpired: () => boolean;
   isAuth: () => boolean;
+  updateProfile: (data: UserRes) => void;
 }
 
 const initialState: Auth = {
@@ -42,7 +43,6 @@ const useAuth = create(
         return now.isAfter(expiredAt);
       },
       isAuth: () => {
-        // TODO expired시, 로그아웃 처리
         const { accessToken, isExpired } = get();
 
         if (!accessToken) return false;
@@ -54,6 +54,10 @@ const useAuth = create(
         }
 
         return true;
+      },
+
+      updateProfile: ({ avatar, nickname }: UserRes) => {
+        set({ avatar, nickname });
       },
     }),
     {
