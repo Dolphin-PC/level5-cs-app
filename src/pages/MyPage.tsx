@@ -1,9 +1,11 @@
 import { profile } from "@/@features/Auth/api";
 import UserProfile from "@/@features/Auth/components/UserProfile";
 import useAuth from "@/@features/Auth/useAuth";
+import ErrorFallbackUI from "@/components/atoms/ErrorFallback";
 import LoadingFallbackUI from "@/components/atoms/LoadingFallbackUI/LoadingFallbackUI";
 import * as S from "@/styles/index.style";
 import { FormEvent, Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
 const MyPage = () => {
   const accessToken = useAuth((state) => state.accessToken);
@@ -22,15 +24,17 @@ const MyPage = () => {
   };
   return (
     <S.div.Container>
-      <Suspense fallback={<LoadingFallbackUI />}>
-        <UserProfile />
-      </Suspense>
+      <ErrorBoundary fallback={<ErrorFallbackUI />}>
+        <Suspense fallback={<LoadingFallbackUI />}>
+          <UserProfile />
 
-      <h4>프로필 변경</h4>
-      <form onSubmit={handleUpdateProfile}>
-        <input type="file" />
-        <input type="text" placeholder="닉네임" />
-      </form>
+          <h4>프로필 변경</h4>
+          <form onSubmit={handleUpdateProfile}>
+            <input type="file" />
+            <input type="text" placeholder="닉네임" />
+          </form>
+        </Suspense>
+      </ErrorBoundary>
     </S.div.Container>
   );
 };

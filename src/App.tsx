@@ -23,11 +23,11 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/card" element={<CardNewPage />} />
           <Route path="/card/:id" element={<CardDetailPage />} />
-          <Route element={<PrivateRoute isAuth={false} />}>
+          <Route element={<PrivateRoute isNeedAuth={false} />}>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
           </Route>
-          <Route element={<PrivateRoute isAuth={true} />}>
+          <Route element={<PrivateRoute isNeedAuth={true} />}>
             <Route path="/my" element={<MyPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
