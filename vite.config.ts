@@ -6,15 +6,7 @@ import removeConsole from "vite-plugin-remove-console";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr(), removeConsole()],
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://localhost:3001",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
-  },
+
   resolve: {
     alias: {
       "@": "/src",
