@@ -10,15 +10,14 @@ interface SearchQuery {
   _limit?: number;
 }
 
-export const getCsCardList = async ({
-  title,
-  _page = 1,
-  _limit = 6,
-}: SearchQuery): Promise<ICsCard[]> => {
+export const getCsCardList = async ({ title, _page = 1, _limit = 6 }: SearchQuery): Promise<ICsCard[]> => {
   const queryParam = new URLSearchParams();
   title && queryParam.append("title_like", title);
   _page && queryParam.append("_page", _page.toString());
   _limit && queryParam.append("_limit", _limit.toString());
+  queryParam.append("_sort", "id"); // 쿼리 파라미터에 정렬 필드 추가
+  queryParam.append("_order", "desc"); // 쿼리 파라미터에 정렬 순서 추가
+
   const res = await api.get<ICsCard[]>(`${BASE_URL}?${queryParam.toString()}`);
 
   return res.data;
@@ -31,9 +30,7 @@ export const getCsCardById = async (id: number): Promise<ICsCard> => {
 };
 
 /** CsCard 생성(익명 | 유저) */
-export const addNewCsCard = async <T extends AuthCsCardReq | CsCardReq>(
-  data: T
-): Promise<ICsCard> => {
+export const addNewCsCard = async <T extends AuthCsCardReq | CsCardReq>(data: T): Promise<ICsCard> => {
   if (data.password) data.password = encrypt(data.password);
 
   const res = await api.post<ICsCard>(BASE_URL, data);
@@ -53,10 +50,7 @@ export const deleteCsCard = async (id: number): Promise<void> => {
   await api.delete(`${BASE_URL}/${id}`);
 };
 
-export const getNextCsCardId = async (
-  id: number,
-  search?: string
-): Promise<ICsCard[]> => {
+export const getNextCsCardId = async (id: number, search?: string): Promise<ICsCard[]> => {
   id++;
 
   let url = `${BASE_URL}?id_gte=${id}`;
@@ -66,10 +60,7 @@ export const getNextCsCardId = async (
   return res.data;
 };
 
-export const getPrevCsCardId = async (
-  id: number,
-  search?: string
-): Promise<ICsCard[]> => {
+export const getPrevCsCardId = async (id: number, search?: string): Promise<ICsCard[]> => {
   id -= 1;
 
   let url = `${BASE_URL}?id_lte=${id}&_sort=id&_order=desc`;
